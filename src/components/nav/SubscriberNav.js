@@ -68,10 +68,10 @@ const SubscriberNav = () => {
           variant="permanent"
           open={!collapsed}
           sx={{
-            width: collapsed ? 73 : "50%",
+            width: collapsed ? 73 : "25%",
             flexShrink: 0,
             [`& .MuiDrawer-paper`]: {
-              width: collapsed ? 73 : "50%",
+              width: collapsed ? 73 : "25%",
               boxSizing: "border-box",
             },
           }}
