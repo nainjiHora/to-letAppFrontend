@@ -79,9 +79,9 @@ function App() {
        
        <Route path="/app" element={<Map />} />
      </Routes>
-     <Footer/>
      </AuthProvider>
    
+     <Footer />
    </Router>
     </div>
   );

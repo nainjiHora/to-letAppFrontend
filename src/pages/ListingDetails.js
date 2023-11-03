@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import Common from "../components/common";
+import { useParams, useNavigate } from "react-router-dom";
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Grid, CardContent, Box, Divider } from "@mui/material";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,12 +23,16 @@ import {
   Marker,
 } from "react-google-maps";
 import { GoogleMapsAPI } from "../custom-config";
+import Swal from "sweetalert2";
 
 const ListingDetails = () => {
+  const comman = new Common()
+  const nav = useNavigate()
   const { listingId } = useParams();
   const [listingDetails, setListingDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [auth, setAuth] = useContext(AuthContext);
+  const [editMode, setEditMode] = useState(false)
 
   useEffect(() => {
     if (auth.user !== null) {
@@ -44,9 +51,9 @@ const ListingDetails = () => {
       const fetchListingDetails = async () => {
         try {
           const response = await axios.get(
-            `/listing/single/except/${listingId}`
+            `/listing/single/${listingId}`
           ); // Replace with your API endpoint
-          console.log(response);
+
           setListingDetails(response.data.listing);
           setLoading(false);
         } catch (error) {
@@ -55,7 +62,44 @@ const ListingDetails = () => {
       };
       fetchListingDetails();
     }
-  }, [listingId]);
+  }, []);
+
+function editListing(){
+  axios.post('/listing/edit',listingDetails).then((data)=>{
+    console.log(data)
+    if(data.data.success){
+      Swal.fire({
+        icon: "success",
+        title: `Congratulation!!`,
+        text: "Listing Updated Successfully!",
+        confirmButtonText: "Done",
+      });
+    setEditMode(false)
+    }
+  })
+}
+
+  function deleteListing() {
+    axios.get(`/listing/delete/${listingId}`).then((data, err) => {
+      if (data.data.success) {
+        Swal.fire({
+          icon: "success",
+          // title: `Congratulation!!`,
+          text: "Deleted Successfully!",
+          confirmButtonText: "cool",
+        });
+        nav("/subscriber/ads")
+      }
+      else {
+        Swal.fire({
+          title: "Error!",
+          text: "Something Went Wrong",
+          icon: "error",
+          confirmButtonText: "Cool",
+        });
+      }
+    })
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -109,24 +153,49 @@ const ListingDetails = () => {
         <Grid item xs={12} md={6}>
           <Card>
             <Card.Body>
-              <h4 className="mb-3">{listingDetails.title}</h4>
-              <h6 className="mb-3">
-                Category: <strong>{listingDetails.category}</strong>
-              </h6>
-              <h6 className="mb-3">
+              <div className="d-flex justify-content-between">
+              {!editMode?<h2 className="mb-3">{comman.capitalize(listingDetails.title)}</h2>:<input className="" size={80} value={listingDetails.title} onInput={(e)=>{setListingDetails({...listingDetails,title:e.target.value})}}></input>}
+              <div style={{cursor:"pointer"}}>
+              {!editMode ? <><button className=" btn btn-primary m-2"  onClick={()=>{setEditMode(true)}}>Edit</button>
+               <button className=" btn btn-danger m-2" onClick={() => { deleteListing() }}>Delete</button></>:<>
+               <button className=" btn btn-primary m-2"  onClick={()=>{editListing()}}>Done</button>
+               <button className=" btn btn-danger m-2" onClick={() => { setEditMode(false)}}>Back</button>
+               </>}
+               </div></div>
+              
+               
+                  <div className="d-flex m-3 ">
+                  <span  style={{ fontWeight: "bold", fontSize: "20px",marginBottom:"20px" }}>Category:</span>
+                  {!editMode?<span style={{ fontWeight: "", fontSize: "20px",marginLeft:"30px" }}>{listingDetails.category}</span>:
+                  <select className="form-control w-50 " style={{marginLeft:"20px",marginBottom:"5px"}} onChange={(e) => {setListingDetails({...listingDetails,category:e.target.value})}} >
+                    <option value="flat">Flat</option>
+                    <option value="house">House</option>
+                    <option value="pg">PG</option>
+                    <option value="room">Room</option>
+                    <option value="shop">Shop</option>
+                    <option value="others">Others</option>
+                  </select>}
+                  </div>
+                
+              <h6 className="m-3">
                 <FontAwesomeIcon
                   icon={faMapMarkerAlt}
                   className="text-primary me-2"
                 />
-                <strong>{listingDetails.state}</strong>
+                <strong style={{ fontSize: "20px" }}>{comman.capitalize(listingDetails.state)}</strong>
               </h6>
 
               <hr />
-              <div style={{ fontWeight: "bold" }}>
-                Price: {listingDetails.price} /
-                <span style={{ fontSize: "18px", fontWeight: "normal" }}>
-                  {listingDetails.priceUnit}
-                </span>
+              <div className="row m-2">
+                <div style={{ fontWeight: "bold", fontSize: "20px" }} className="col-2">
+                  <span>Price:</span>
+                </div>
+                <div className="col-6">
+                  {editMode?<input type="number" className="form-control" value={listingDetails.price} onInput={(e) => { setListingDetails({ ...listingDetails, price: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.price}</span><span style={{ fontSize: "20px", fontWeight: "", marginLeft: "5px" }}>
+                    {"/" + listingDetails.priceUnit}
+                  </span></>}
+                  
+                </div>
               </div>
               {listingDetails.pricingType === "Range" && (
                 <div>
@@ -139,13 +208,18 @@ const ListingDetails = () => {
                 </div>
               )}
               <hr />
-
-              <pre style={{ fontWeight: "bold" }}>
-                Description: {listingDetails.description}{" "}
-              </pre>
+              <div className="row m-2">
+                <div className="col-2" style={{ fontWeight: "bold" }}>
+                  <span style={{ fontSize: "20px" }}>Description:</span >
+                </div>
+                <div className="col-6">
+                {editMode?<input type="text" className="form-control" value={listingDetails.description} onInput={(e) => { setListingDetails({ ...listingDetails, description: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.description}</span>}
+             
+                </div>
+              </div>
 
               <hr />
-              <h6>Contact Details </h6>
+              <h3 className="mb-3"> <u>Contact Details</u> </h3>
               {!auth.user ? (
                 <div>
                   <p>
@@ -154,34 +228,54 @@ const ListingDetails = () => {
                     <strong className="blurme">Login to Continue</strong>
                   </p>
                   <p>
-                    WhatsApp:{" "}
+                    <span style={{ fontSize: "20px" }}> WhatsApp:</span>{" "}
                     <strong className="blurme">Login to Continue</strong>
                   </p>
                 </div>
               ) : (
                 <div>
-                  <p>
-                    Contact: <strong>{listingDetails.phone}</strong>
-                  </p>
-                  <p>
-                    WhatsApp: <strong>{listingDetails.whatsappNumber}</strong>
-                  </p>
+                  <div className="row m-2">
+                    <div className="col-2">
+                      <span style={{ fontWeight: "bold", fontSize: "20px" }}>   Contact:</span>
+                    </div>
+                    <div className="col-6">
+                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.phone}</span>}
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-2 m-2">
+                      <span style={{ fontWeight: "bold", fontSize: "20px" }}> WhatsApp:</span>
+                    </div>
+                    <div className="col-6">
+                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.whatsappNumber}</span>}
+                    </div>
+                  </div>
                 </div>
               )}
+              <div className="row m-2">
+                <div className="col-2">
+                  <span style={{ fontWeight: "bold", fontSize: "20px" }}> Zip Code:</span>
 
-              <p>
-                Zip Code: <strong>{listingDetails.zipCode}</strong>
-              </p>
+                </div>
+                <div className="col-6">
 
-              <p>
-                Address: <strong>{listingDetails.address}</strong>
-              </p>
+{editMode?<input type="number" className="form-control" value={listingDetails.zipCode} onInput={(e) => { setListingDetails({ ...listingDetails, zipCode: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.zipCode}</span>}                </div>
+              </div>
+              <div className="row m-2">
+                <div className="col-2">
+                  <span style={{ fontWeight: "bold", fontSize: "20px" }}>   Address:</span>
+                </div>
+                <div className="col-6">
+                {editMode?<input type="text" className="form-control" value={listingDetails.address} onInput={(e) => { setListingDetails({ ...listingDetails, address: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.address}</span>}                </div>
+              </div>
+
+
 
               {isLocationAvailable && (
                 <>
-                  <p>Address: {listingDetails.locationState.address}</p>
-                  <p>City: {listingDetails.locationState.city}</p>
-                  <p>State: {listingDetails.locationState.state}</p>
+                  {/* <p> <span style={{fontSize:"20px"}}></span>Address: <input type="text" value={listingDetails.description} onInput={(e)=>{setListingDetails({...listingDetails,description:e.target.value})}} disabled={!editMode}></input></p> */}
+                  {/* <p><span style={{fontSize:"20px"}}>City:</span> <input type="text" value={listingDetails.description} onInput={(e)=>{setListingDetails({...listingDetails,description:e.target.value})}} disabled={!editMode}></input></p> */}
+                  {/* <p><span style={{fontSize:"20px"}}>State: </span><input type="text" value={listingDetails.whats} onInput={(e)=>{setListingDetails({...listingDetails,description:e.target.value})}} disabled={!editMode}></input></p> */}
                 </>
               )}
             </Card.Body>

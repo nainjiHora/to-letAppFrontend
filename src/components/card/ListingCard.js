@@ -1,8 +1,11 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import Common from "../common";
 
 function ListingCard({ listing }) {
+
+  var common=new Common()
   return (
     <div>
       <div className="card-deck p-2">
@@ -29,7 +32,7 @@ function ListingCard({ listing }) {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <div className="card-body">
-              <h4 className="card-title">{listing.title}</h4>
+              <h4 className="card-title">{common.capitalize(listing.title)}</h4>
               <b>
                 <p>Location: {listing.state}</p>
                 <p>Type : {listing.category}</p>

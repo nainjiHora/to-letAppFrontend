@@ -156,18 +156,19 @@ const Main = () => {
         ))}
       </Grid>}
 
-      <Pagination
+    <div className="d-flex justify-content-center">
+    <Pagination
         count={totalPages}
         page={page}
+        size="large"
         onChange={handlePageChange}
         color="primary"
         style={{ marginTop: 20, alignSelf: "flex-end",marginBottom:20 }}
       />
-      <Grid container justifyContent="center">
-        <Grid item>
-          <Location />
-        </Grid>
-      </Grid>
+    </div>
+      <div className="d-flex justify-content-center">
+      <Location></Location>
+      </div>
       <EnquiryForm />
     </div>
   );

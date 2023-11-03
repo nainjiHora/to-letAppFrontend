@@ -55,22 +55,24 @@ const InquiryForm = () => {
   };
 
   return (
-    <Container maxWidth="lg" style={{ margin: "35px auto" }}>
+    <Container maxWidth="lg" style={{ margin: "3px auto" }}>
       <Paper
         elevation={5}
         style={{
-          padding: "32px",
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          padding: "16px",
+          borderRadius:"20px",
+          border:"4px solid red"
+          // boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: "16px" }}>
-          <Typography variant="h4" gutterBottom style={{ color: "red" }}>
-            Feel free to inquire about us
+        <div >
+          <Typography variant="h5" gutterBottom >
+            <span className="text-danger">Feel free to Contact US</span>
           </Typography>
         </div>
         <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+          <Grid container spacing={1}>
+            <Grid item xs={4} sm={4}>
               <TextField
                 label="Name"
                 name="name"
@@ -81,7 +83,7 @@ const InquiryForm = () => {
                 onChange={handleChange}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={4} sm={4}>
               <TextField
                 label="Email"
                 name="email"
@@ -92,7 +94,7 @@ const InquiryForm = () => {
                 onChange={handleChange}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={4} sm={4}>
               <TextField
                 label="Mobile"
                 name="mobile"
@@ -103,13 +105,12 @@ const InquiryForm = () => {
                 onChange={handleChange}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12}>
               <TextField
                 label="Comment / Message"
                 name="comment"
                 variant="outlined"
                 fullWidth
-                multiline
                 rows={4}
                 required
                 value={formData.comment}
@@ -121,7 +122,7 @@ const InquiryForm = () => {
             type="submit"
             variant="contained"
             color="primary"
-            style={{ marginTop: "16px" }}
+            style={{ marginTop: "10px" }}
           >
             Submit
           </Button>
