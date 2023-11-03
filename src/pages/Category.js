@@ -73,7 +73,7 @@ const Category = () => {
         page={page}
         onChange={handlePageChange}
         color="primary"
-        style={{ marginTop: 16, alignSelf: "center" }}
+        style={{ marginTop: 20, alignSelf: "center", marginBottom:20}}
       />
     </>
   );

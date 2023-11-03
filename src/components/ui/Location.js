@@ -14,9 +14,9 @@ const locations = [
 const Location = () => {
   return (
     <div>
-      <Grid container>
+      <Grid container >
         {locations.map((location, index) => (
-          <Paper elevation={3} style={{ padding: "16px", margin: "5px" }}>
+          <Paper elevation={3} style={{   padding: "16px", margin: "5px", }}>
             {location.icon}
             <Link
               to={`/ads/location/${location.name.toLowerCase()}`}

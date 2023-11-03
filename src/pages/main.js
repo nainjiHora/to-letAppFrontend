@@ -12,6 +12,7 @@ import Properties from "../components/ui/properties";
 import Location from "../components/ui/Location";
 import Pagination from "@mui/material/Pagination";
 import EnquiryForm from "../components/form/EnquiryForm";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Main = () => {
   const [auth] = useContext(AuthContext);
@@ -26,6 +27,9 @@ const Main = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize, setPageSize] = useState(12);
   const [sortOption, setSortOption] = useState("none");
+  const [errMsg,setErrMsg]=useState(false)
+  const [isLoader,setIsLoader]=useState(true)
+
   const isDesktop = useMediaQuery("(min-width:600px)");
 
   useEffect(() => {
@@ -39,11 +43,13 @@ const Main = () => {
     try {
       const queryParams = `?page=${page}&limit=${pageSize}&search=${searchQuery}&sort=${sortOption}&category=${filterCategory}&location=${filterLocation}`;
       const response = await axios.get(`/listing/get/all${queryParams}`);
+      setIsLoader(false)
       const { listings, totalPages } = response.data;
       setListings(listings);
       setTotalPages(totalPages);
     } catch (error) {
-      console.error(error);
+      setErrMsg(true)
+      console.error("error show",error);
     }
   };
 
@@ -141,24 +147,22 @@ const Main = () => {
       <Container maxWidth="md"></Container>
 
       <Filters sortOption={sortOption} handleSortChange={handleSortChange} />
+      {errMsg? <span style={{display:"inline-block",position:"relative", left:"40%",margin:"45px 0px", color:"red",}}>Ooops....!! Something Wants Wrong</span> :isLoader? <CircularProgress style={{position:"relative", left:"50%",marginTop:"70px ",color:"red",}}/>:
       <Grid container>
         {listings.map((listing, idx) => (
           <Grid item xs={12} md={3} key={listing._id}>
             <ListingCard listing={listing} />
           </Grid>
         ))}
-      </Grid>
+      </Grid>}
 
-    <div className="d-flex justify-content-center m-4">
-    <Pagination
+      <Pagination
         count={totalPages}
         page={page}
         onChange={handlePageChange}
-        // color="primary"
-        size={"large"}
-        style={{ marginTop: 16, alignSelf: "flex-end" ,fontSize:"20px"}}
+        color="primary"
+        style={{ marginTop: 20, alignSelf: "flex-end",marginBottom:20 }}
       />
-    </div>
       <Grid container justifyContent="center">
         <Grid item>
           <Location />

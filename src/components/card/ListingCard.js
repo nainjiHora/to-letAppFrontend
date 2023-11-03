@@ -15,9 +15,9 @@ function ListingCard({ listing }) {
                     <Carousel.Item key={index}>
                       <img
                         src={url}
-                        className="smallimg d-block w-100"
+                        className="smallimg d-block w-100 h-50"
                         alt={`Image ${index}`}
-                        height={300}
+                        
                       />
                     </Carousel.Item>
                   )

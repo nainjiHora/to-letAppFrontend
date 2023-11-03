@@ -55,7 +55,7 @@ const InquiryForm = () => {
   };
 
   return (
-    <Container maxWidth="lg" style={{ marginTop: "32px" }}>
+    <Container maxWidth="lg" style={{ margin: "35px auto" }}>
       <Paper
         elevation={5}
         style={{

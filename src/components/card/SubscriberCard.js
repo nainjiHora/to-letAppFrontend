@@ -23,6 +23,8 @@ function SubscriberCard({ listing, handleRenewClick }) {
                       <img
                         src={url}
                         className="smallimg d-block w-100"
+                        
+
                         alt={`Image ${index}`}
                       />
                     </Carousel.Item>

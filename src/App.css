@@ -36,8 +36,6 @@
     transform: rotate(360deg);
   }
 }
-.MuiPagination-root {
-  button {
-    color: red !important;
- }
+.carousel-item img{
+  height: 400px !important;
 }
