@@ -27,10 +27,7 @@ function ListingCard({ listing }) {
               )}
             </Carousel>
           </div>
-          <Link
-            to={`/ads/${listing._id}`}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
+         
             <div className="card-body">
               <h4 className="card-title">{common.capitalize(listing.title)}</h4>
               <b>
@@ -38,8 +35,9 @@ function ListingCard({ listing }) {
                 <p>Type : {listing.category}</p>
                 <p>Price : {listing.price}</p>
               </b>
+              <Link to={`/ads/${listing._id}`} style={{ textDecoration: "none", color: "inherit" }}><button className="btn btn-danger w-100">To-Let</button></Link>
             </div>
-          </Link>
+          
         </div>
       </div>
     </div>

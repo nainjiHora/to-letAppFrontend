@@ -138,10 +138,17 @@ const Post = () => {
     listing.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  function changeList(index){
+    console.log(index)
+let temp=[...listings]
+temp[index].is_booked=temp[index].is_booked?0:1
+setListings(temp)
+  }
+
   return (
     <SubscriberLayout>
       <Container>
-        <Typography variant="h2" align="center" sx={{ color: red[500] }}>
+        <Typography variant="h4" align="center" sx={{ color: red[500] }}>
           Your Ads
         </Typography>
         <TextField
@@ -156,7 +163,8 @@ const Post = () => {
           {filteredListings.map((listing, idx) => (
             <Grid item xs={12} md={3} key={listing._id}>
               <SubscriberCard
-                listing={listing}
+                list={listing}
+                
                 handleRenewClick={handleRenewClick}
               />
             </Grid>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Common from "../components/common";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Grid, CardContent, Box, Divider } from "@mui/material";
@@ -67,7 +67,7 @@ const ListingDetails = () => {
 function editListing(){
   axios.post('/listing/edit',listingDetails).then((data)=>{
     console.log(data)
-    if(data.data.success){
+    if(data.data.success){  
       Swal.fire({
         icon: "success",
         title: `Congratulation!!`,
@@ -104,7 +104,7 @@ function editListing(){
   if (loading) {
     return <div>Loading...</div>;
   }
-  console.log(listingDetails);
+  
   const isLocationAvailable =
     listingDetails.locationState &&
     listingDetails.locationState.mapPosition &&
@@ -155,13 +155,14 @@ function editListing(){
             <Card.Body>
               <div className="d-flex justify-content-between">
               {!editMode?<h2 className="mb-3">{comman.capitalize(listingDetails.title)}</h2>:<input className="" size={80} value={listingDetails.title} onInput={(e)=>{setListingDetails({...listingDetails,title:e.target.value})}}></input>}
-              <div style={{cursor:"pointer"}}>
+              {auth && auth.user && auth.user._id==listingDetails.user&&<div style={{cursor:"pointer"}}>
               {!editMode ? <><button className=" btn btn-primary m-2"  onClick={()=>{setEditMode(true)}}>Edit</button>
                <button className=" btn btn-danger m-2" onClick={() => { deleteListing() }}>Delete</button></>:<>
                <button className=" btn btn-primary m-2"  onClick={()=>{editListing()}}>Done</button>
                <button className=" btn btn-danger m-2" onClick={() => { setEditMode(false)}}>Back</button>
                </>}
-               </div></div>
+               </div>}
+               </div>
               
                
                   <div className="d-flex m-3 ">
@@ -278,6 +279,8 @@ function editListing(){
                   {/* <p><span style={{fontSize:"20px"}}>State: </span><input type="text" value={listingDetails.whats} onInput={(e)=>{setListingDetails({...listingDetails,description:e.target.value})}} disabled={!editMode}></input></p> */}
                 </>
               )}
+
+              <div className=""><Link to={"/"}><button className="btn btn-danger w-50 m-5">Back To Home</button></Link></div>
             </Card.Body>
           </Card>
         </Grid>
