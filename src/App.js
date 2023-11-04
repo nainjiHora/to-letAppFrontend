@@ -17,6 +17,7 @@ import SubscriberForm from "./pages/subscriber/form"
 import SubscriberPayments from  "./pages/subscriber/payments"
 import SubsrcriberListings from "./pages/subscriber/post"
 import SubscriberProfile from "./pages/subscriber/profile"
+import SubscriberBoost from './pages/subscriber/SubscriberBoost';
 import Main from './pages/main';
 import AdminUsersPage from "./pages/admin/user"
 import AdminListingPage from "./pages/admin/listing"
@@ -61,7 +62,7 @@ function App() {
        <Route path="/subscriber/payments" element={<SubscriberPayments />} />
        <Route path="/subscriber/ads" element={<SubsrcriberListings />} />
        <Route path="/subscriber/dashboard" element={<SubscriberProfile />} />
-       {/* <Route path="/subscriber/pricing" element={<SubscriberPricing />} /> */}
+       <Route path="/subscriber/Boost" element={<SubscriberBoost />} />
 
        <Route path="/admin/home" element={<AdminHomePage />} />
        <Route path="/admin/users" element={<AdminUsersPage />} />

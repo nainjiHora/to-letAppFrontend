@@ -4,7 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Common from "../common";
 
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -13,11 +13,14 @@ function SubscriberCard({ list, handleRenewClick}) {
   const [listing,setListing]=useState(list)
   const currentDate = moment().format("YYYY-MM-DD");
   const isExpired = moment(listing.expiryDate).isBefore(currentDate);
+  const userData=JSON.parse(localStorage.getItem('auth')).user
+  var auth=JSON.parse(localStorage.getItem('auth'))
 var common=new Common()
+var nav=useNavigate()
 function changeBooked(){
   Swal.fire({
-    title: "Is this Place Booked",
-    text: "Are you Confirm this place is booked ?",
+    title:listing.is_booked? "Is this Place Available":"Is this Place Booked",
+    text: listing.is_booked?"Are you sure this place is Available ?":"Are you sure this place is booked ?",
     icon: "warning",
     confirmButtonText: 'Yes, I am sure!',
     cancelButtonText: "No, cancel it!",
@@ -47,11 +50,60 @@ function changeBooked(){
   })
 
 }
+function boostListing(){
+  Swal.fire({
+    title:"Are you Sure to Boost this Listing?",
+    text: "Boosting The listing will make this property listed on the top of others",
+    icon: "info",
+    confirmButtonText: 'Yes, Boost this List',
+    cancelButtonText: "No, cancel it!",
+    showCancelButton: true,
+    dangerMode: true,
+  }).then(function(isConfirm) {
+    if (isConfirm.isConfirmed) {
+      
+      axios.get('/listing/boost/'+listing._id+'/'+userData._id).then((data)=>{
+        
+        if(data.data.success){
+          let temp={...listing}
+          temp.boost=1
+          setListing(temp)
+          
+          let tempAuth={...auth}
+         tempAuth.user.boost_available=tempAuth.user.boost_available-1
+         localStorage.setItem("auth",JSON.stringify(tempAuth))
+          Swal.fire({
+            icon: "success",
+            title: `Congratulation!!`,
+            text: "Listing Boosted Successfully!",
+            confirmButtonText: "Done",
+          });
+        }
+        else{
+          Swal.fire({
+            title:"No Boost Available",
+            text: "Buy Some Boosts to get your listings on Top",
+            icon: "danger",
+            confirmButtonText: 'Buy Boost',
+            cancelButtonText: "Cancel",
+            showCancelButton: true,
+            dangerMode: true,
+          }).then(function(isConfirm) {
+            if (isConfirm.isConfirmed) {
+              nav("/subscriber/boost")
+            }
+        })
+      }
+     
+    
+  })
+    }
+})
+}
   return (
     <div>
       <div className="card-deck p-2">
         <div className="card p-2">
-        <div className="d-flex justify-content-end"><input type="checkbox" checked={listing.is_booked} onChange={()=>{changeBooked()}}></input><span style={{fontSize:"14px",fontWeight:"600",marginLeft:"4px"}}>Booked</span></div>
           <div>
             <Carousel>
               {listing.images.map(
@@ -61,9 +113,8 @@ function changeBooked(){
                       <img
                         src={url}
                         className="smallimg d-block w-100"
-                        
-
                         alt={`Image ${index}`}
+                        
                       />
                     </Carousel.Item>
                   )
@@ -87,14 +138,18 @@ function changeBooked(){
             <p style={{ color: isExpired ? "red" : "green" }}>
               Status: {isExpired ? "Expired" : "Active"}
             </p>
-            {isExpired && (
+            {isExpired ? (
               <Button
                 type="primary"
                 onClick={() => handleRenewClick(listing._id, listing.price)}
               >
                 Renew
-              </Button>
-            )}
+              </Button>):<>
+        {listing.boost==0 && <button className="btn btn-primary w-100" onClick={()=>boostListing()}>Boost</button>}
+        <button className="btn btn-warning w-100 text-dark mt-2" onClick={()=>{changeBooked()}}>{listing.is_booked?"Mark as Available":"Mark as Booked"}</button>
+
+              </>
+            }
           </div>
         </div>
       </div>
