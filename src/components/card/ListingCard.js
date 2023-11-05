@@ -2,12 +2,14 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import Common from "../common";
+import { useState } from "react";
 
 function ListingCard({ listing }) {
 
+  const [onHover,setOnHover]=useState(false)
   var common=new Common()
   return (
-    <div>
+    <div onMouseEnter={()=>{setOnHover(true)}} onMouseLeave={()=>{setOnHover(false)}} style={{border:onHover?"2px solid red":"0px",margin:"2px"}}>
       <div className="card-deck p-2">
         <div className="card p-2">
           <div>
@@ -35,7 +37,10 @@ function ListingCard({ listing }) {
                 <p>Type : {listing.category}</p>
                 <p>Price : {listing.price}</p>
               </b>
-              <Link to={`/ads/${listing._id}`} style={{ textDecoration: "none", color: "inherit" }}><button className="btn btn-danger w-100">To-Let</button></Link>
+              {onHover&&<Link to={`/ads/${listing._id}`} style={{ textDecoration: "none", color: "inherit" }}>
+              <button className="btn btn-danger w-100">To-Let</button>
+              </Link>}
+
             </div>
           
         </div>

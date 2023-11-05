@@ -310,16 +310,16 @@ const Navigation = () => {
 
   return (
     <>
-      <AppBar position="static" color="primary"  style={appBarStyle} >
+      <AppBar position="static"   style={appBarStyle} >
         <Toolbar>
           <Hidden mdUp implementation="css">
             <IconButton
-              color="secondary"
+              style={{color:"#fff"}}
               edge="start"
               onClick={toggleDrawer}
             >
               <Menu />
-            </IconButton>
+            </IconButton >
           </Hidden>
           <Typography
             variant="h6"
@@ -327,23 +327,21 @@ const Navigation = () => {
             to="/"
             style={{ textDecoration: 'none', color: 'white', flexGrow: 1 }}
           >
-            <Dashboard /> ToLet
+            {/* <Dashboard /> */}
+             ToLet
           </Typography>
           <Hidden smDown implementation="css">
             <div style={{ display: 'flex', alignItems: 'center' }}>
               {data.user && (
                 <>
                 
-                  <IconButton color="secondary" onClick={roleBasedLink}>
+                  <IconButton  style={{color:"#fff"}} onClick={roleBasedLink}>
                     <Dashboard />
                   </IconButton>
-                  <IconButton color="secondary" onClick={signOut}>
+                  <IconButton  style={{color:"#fff"}} onClick={signOut}>
                     <ExitToApp />
                   </IconButton>
-                   <Button variant="contained" component={Link}
-                    to="/subscriber/form" style={{ backgroundColor: "#7F00FF","padding":"10px","margin":"10px" }} startIcon={<PostAdd />} >
-                  Post Your Ad
-                </Button>
+                  
                 </>
               )}
 
@@ -366,15 +364,20 @@ const Navigation = () => {
                   >
                     Register
                   </Button>
-                  <Button variant="contained" component={Link}
-                    to="/signin" style={{ backgroundColor: "#7F00FF","padding":"10px","margin":"10px" }} startIcon={<PostAdd />} >
-                  Post Your Ad
-                </Button>
+                  
                 </>
                  
               )}
             </div>
           </Hidden>
+         {!data.user? <Button variant="contained" component={Link}
+                    to="/signin" style={{ backgroundColor: "#7F00FF","margin":"10px" ,color:"#fff" }} startIcon={<PostAdd />} >
+                  Post Your Ad
+                </Button>:
+                <Button  component={Link}
+                    to="/subscriber/form" style={{ backgroundColor: "#7F00FF","margin":"10px",color:"#fff" }} startIcon={<PostAdd />} >
+                  Post Your Ad
+                </Button>}
         </Toolbar>
       </AppBar>
       <Hidden mdUp implementation="css">
