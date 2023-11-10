@@ -11,7 +11,8 @@ import {
   Menu,
   ChevronLeft,
   ROcketIcon,
-  RocketLaunch
+  RocketLaunch,
+  MilitaryTech
 } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useWindowWidth } from "@react-hook/window-size";
@@ -26,6 +27,8 @@ const tabData = [
 
   { label: "Listing Form", icon: <Description />, path: "/subscriber/form" },
   {label:"Boosts",icon:<RocketLaunch></RocketLaunch> ,path:"/subscriber/boost"},
+  {label:"Plans",icon:<MilitaryTech></MilitaryTech> ,path:"/subscriber/plans"},
+
   { label: "Payments", icon: <Payment />, path: "/subscriber/payments" },
   { label: "Listings", icon: <FormatListBulleted />, path: "/subscriber/ads" },
 ];

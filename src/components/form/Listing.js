@@ -178,8 +178,9 @@ const Listing = (props) => {
   };
 
   const handleWithoutChargesSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
+      console.log("poiuytr")
       const response = await axios.post("/listing/create", {
         user: data.user._id,
         title: title,
@@ -199,16 +200,28 @@ const Listing = (props) => {
         locationState: locationState,
         otherCategory: otherCategory,
       });
-
-      Swal.fire({
+console.log(response)
+     if(response){
+       Swal.fire({
         icon: "success",
         title: `Congratulation!!`,
         text: "Property Created Successfully!",
         confirmButtonText: "cool",
       }).then(() => {
         navigate("/subscriber/ads");
-      });
+      });}
+      else{
+        Swal.fire({
+          icon: "error",
+          title: `Please Check your Form`,
+          text: "Something went wrong",
+          confirmButtonText: "check",
+        }).then(() => {
+          // navigate("/subscriber/");
+        });
+      }
     } catch (error) {
+      console.log(error)
       Swal.fire({
         title: "Error!",
         text: "Do you want to Try again !!",
@@ -584,7 +597,7 @@ const Listing = (props) => {
         <ChargesCalculator
           price={price}
           goToPreviousPage={goToPreviousPage}
-          handleFormSubmit={handleFormSubmit}
+          handleFormSubmit={handleWithoutChargesSubmit}
           setChargedPrice={setChargedPrice}
         />
       )}
