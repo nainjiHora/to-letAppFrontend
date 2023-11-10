@@ -299,7 +299,19 @@ console.log(response)
   };
 
   const goToNextPage = () => {
+    if(title && pricingType && category && price){
     setCurrentPage(currentPage + 1);
+    }
+    else{
+      Swal.fire({
+        icon: "error",
+        title: `Invalid Form`,
+        text: "Please Fill the Form Correctly ",
+        confirmButtonText: "ok",
+      }).then(() => {
+        // navigate("/subscriber/ads");
+      });
+    }
   };
 
   const goToPreviousPage = () => {
@@ -335,7 +347,7 @@ console.log(response)
             <Grid item xs={12} md={6}>
               <Box style={formGroupStyle}>
                 <TextField
-                  label="Title"
+                  label="Title *"
                   fullWidth
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -345,7 +357,7 @@ console.log(response)
                 <FormControl fullWidth>
                   <InputLabel htmlFor="category">Select a category</InputLabel>
                   <Select
-                    id="category"
+                    id="category*"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
@@ -373,7 +385,7 @@ console.log(response)
                 <FormControl fullWidth>
                   <InputLabel htmlFor="pricingType">Price Type</InputLabel>
                   <Select
-                    id="pricingType"
+                    id="pricingType*"
                     value={pricingType}
                     onChange={(e) => setPricingType(e.target.value)}
                   >
@@ -386,7 +398,7 @@ console.log(response)
               {pricingType === "PRICE" && (
                 <Box style={formGroupStyle}>
                   <TextField
-                    label="Price [₹]"
+                    label="Price [₹]*"
                     fullWidth
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}

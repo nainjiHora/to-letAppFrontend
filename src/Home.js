@@ -87,7 +87,7 @@ const MyMapComponent = withScriptjs(
               <option>Restauarants</option>
             </select>
           </div>
-          <div class="col-md-1"><input type="button" class="btn btn-primary" class="form-control" value="Search"/></div>
+          <div class="col-md-1"><input type="button"  class="form-control" value="Search"/></div>
         </div>
       </div>
     </div>

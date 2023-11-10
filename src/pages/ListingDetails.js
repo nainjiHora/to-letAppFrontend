@@ -34,6 +34,115 @@ const ListingDetails = () => {
   const [auth, setAuth] = useContext(AuthContext);
   const [editMode, setEditMode] = useState(false)
 
+
+
+  var buy=()=>{
+    Swal.fire({
+      title:"Unlimited Package",
+      text: "With This Package, you can View the contact Info of unlimited properties for 7 Days ",
+      icon: "info",
+      confirmButtonText: 'Go For it',
+      cancelButtonText: "No, cancel it!",
+      showCancelButton: true,
+      dangerMode: true,
+    }).then(function(isConfirm) {
+      if (isConfirm.isConfirmed) {
+        
+       buyViewPackage()
+       
+      } 
+    })
+  }
+
+  var buyViewPackage=async ()=>{
+        
+            
+    try {
+      const amount = 100;
+      const {
+        data: { key },
+      } = await axios.get("/getkey");
+      const {
+        data: { order },
+      } = await axios.post("/checkout", {
+        amount,
+      });
+
+      const BookingData = {
+        razorpay_order_id: order.id,
+        razorpay_payment_id: order.id,
+        amount: order.amount,
+      };
+      const planDetails = {
+        name: "viewer",
+        amount,
+        planValidity: 7,
+      };
+
+      const options = {
+        key,
+        amount: order.amount,
+        currency: "INR",
+        name: "Razorpay",
+        description: "RazorPay",
+        image: "",
+        order_id: order.id,
+
+        handler: async (response) => {
+          try {
+            const verifyUrl = "/buyViewPackage";
+            const { data } = await axios.put(verifyUrl, {
+              response,
+              BookingData,
+              planDetails,
+              auth,
+            
+            });
+
+            if (data.status) {
+            //   setisModeoOpen(false);
+              
+            let temp={...auth}
+            temp.user.isPaid=true
+            setAuth(temp)
+            localStorage.setItem('auth',JSON.stringify(temp))
+                Swal.fire({
+                    title: "Package Upgraded",
+                    text: "Now you can view unlimited Properties for 7 Days",
+                    icon: "success",
+                    confirmButtonText: "Cool",
+                  });
+              
+              
+            } else {
+            //   setisModeoOpen(false);
+
+              Swal.fire({
+                title: "Error!",
+                text: "Do you want to Try again !!",
+                icon: "error",
+                confirmButtonText: "Cool",
+              });
+            }
+          } catch (error) {
+            // setisModeoOpen(false);
+
+            Swal.fire({
+              title: "Error!",
+              text: "Do you want to Try again !!",
+              icon: "error",
+              confirmButtonText: "Cool",
+            });
+          }
+        },
+      };
+
+      const razor = new window.Razorpay(options);
+      razor.open();
+    } catch (error) {
+      console.error("Error saving listing:", error);
+    }
+  };
   useEffect(() => {
     if (auth.user !== null) {
       const fetchListingDetails = async () => {
@@ -226,11 +335,11 @@ function editListing(){
                   <p>
                     {" "}
                     Contact:{" "}
-                    <strong className="blurme">Login to Continue</strong>
+                   <Link to="/signin" > <strong className="">Login to Continue</strong></Link>
                   </p>
                   <p>
                     <span style={{ fontSize: "20px" }}> WhatsApp:</span>{" "}
-                    <strong className="blurme">Login to Continue</strong>
+                    <Link to="/signin"><strong className="">Login to Continue</strong></Link>
                   </p>
                 </div>
               ) : (
@@ -240,7 +349,7 @@ function editListing(){
                       <span style={{ fontWeight: "bold", fontSize: "20px" }}>   Contact:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.phone}</span>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"20px" }} className={auth.user.isPaid?"":"blurme"}>{listingDetails.phone}</span>{!auth.user.isPaid&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
                     </div>
                   </div>
                   <div className="row">
@@ -248,7 +357,7 @@ function editListing(){
                       <span style={{ fontWeight: "bold", fontSize: "20px" }}> WhatsApp:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.whatsappNumber}</span>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }} className={auth.user.isPaid?"":"blurme"}>{listingDetails.whatsappNumber}</span>}
                     </div>
                   </div>
                 </div>
