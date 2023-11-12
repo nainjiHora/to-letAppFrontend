@@ -13,7 +13,10 @@ import { AuthContext } from "../context/auth";
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import LoginGoogle from "../components/auth/LoginGoogle";
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 
+
+import KeyIcon from '@mui/icons-material/Key';
 const SignIn = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -59,57 +62,83 @@ const SignIn = () => {
   };
 
   return (
+    
     <Container maxWidth="md">
       <Box
+      className="singin-box"
+      margin={"2rem"}
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
-        minHeight="100vh"
+        minHeight="80vh"
+        border={"2px solid #b30707"}
+        borderRadius={"5px"}
+        padding={"5px"}
+
+        boxShadow={ "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px"}
       >
-        <Typography variant="h4" align="center" gutterBottom>
-          To-Let Services
+        <Typography variant="h3" className="wel-text" align="center"  gutterBottom>
+          Welcome!
         </Typography>
-        <Typography variant="h5" align="center" gutterBottom>
-          Sign In
-        </Typography>
+        {/* <Typography variant="h5" className="wel-text-p"  align="center" gutterBottom>
+          Sign In to continue
+        </Typography> */}
         <LoginGoogle />
+        <div className="mt-2" style={{color:"#b30707,"}}>OR</div>
         <form onSubmit={onFinish} style={{ width: "100%" }}>
-          <TextField
+         <div className="container d-flex justify-content-center">
+         <div className="row  ">
+          <div className="col-12  col-md-12 d-flex justify-content-end ">
+             <TextField
             id="email"
-            label="Email"
-            variant="outlined"
+            // label="Email"
+            variant="standard"
             type="email"
             name="email"
             placeholder="Enter your email"
             required
-            fullWidth
+            // fullWidth
             margin="normal"
+            className="input-field"
             InputProps={{
-              startAdornment: <EmailIcon sx={{ marginRight: 1 }} />,
+              startAdornment: <AlternateEmailIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+              
             }}
           />
+          </div>
+          </div>
+          </div>
+          <div className="container d-flex justify-content-center">
+          <div className="row ">
+          <div className="col-12 d-flex justify-content-end">
           <TextField
             id="password"
-            label="Password"
-            variant="outlined"
+            // label="Password"
+            variant="standard"
             type="password"
             name="password"
             placeholder="Enter your password"
             required
-            fullWidth
+            // fullWidth
             margin="normal"
             InputProps={{
-              startAdornment: <LockIcon sx={{ marginRight: 1 }} />,
+              startAdornment: <KeyIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }} />,
             }}
           />
+          </div>
+          </div>
+          </div>
           <Button
             variant="contained"
-            color="primary"
+            // color="primary"
+            className="sign-in-btn"
             type="submit"
             disabled={loading}
-            fullWidth
-            style={{ marginTop: "1rem" }}
+            // fullWidth
+            align="center"
+            style={{margin: '1rem auto', display: "flex", padding:"7px 35px"}}
+            // style={{ marginTop: "1rem" }}
           >
             Sign In
           </Button>
@@ -120,8 +149,8 @@ const SignIn = () => {
           >
             <Link href="/forgot-password">Forgot password</Link>
           </Typography>
-          <Typography variant="body2" align="center">
-            Or <Link href="/signup">Register now!</Link>
+          <Typography variant="body2" align="center" className="m-3">
+             <span> Not a User ?</span> <Link href="/signup">Register now!</Link>
           </Typography>
         </form>
       </Box>

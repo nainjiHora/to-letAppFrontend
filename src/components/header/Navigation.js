@@ -195,12 +195,15 @@ import {
 } from '@mui/icons-material';
 
 import { AuthContext } from '../../context/auth';
+
 import  toast  from 'react-hot-toast';
 
 const Navigation = () => {
   const [data] = useContext(AuthContext);
   const [auth, setAuth] = useContext(AuthContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
@@ -298,7 +301,7 @@ const Navigation = () => {
     </div>
   );
   const appBarStyle = {
-    backgroundColor: 'red', // Background color set to red
+    backgroundColor: '#b30707', // Background color set to red
   };
 
   const menuButtonStyle = {
@@ -306,6 +309,9 @@ const Navigation = () => {
       display: 'none', // Hide the menu button on larger screens
     },
   };
+
+  //button hover
+
 
 
   return (
@@ -325,10 +331,12 @@ const Navigation = () => {
             variant="h6"
             component={Link}
             to="/"
-            style={{ textDecoration: 'none', color: 'white', flexGrow: 1 }}
+            style={{ textDecoration: 'none', color: 'white', flexGrow: 1,fontSize:"27px" }}
           >
             {/* <Dashboard /> */}
-             ToLet
+
+            <img src={"./images/logo.png"} alt="" />
+             {/* ToLet */}
           </Typography>
           <Hidden smDown implementation="css">
             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -350,6 +358,7 @@ const Navigation = () => {
                   <Button
                     color="secondary"
                     component={Link}
+                    className='log-btn'
                     to="/signin"
                     style={{ textDecoration: 'none', color: 'white', flexGrow: 1 }}
                     startIcon={<LoginOutlined />}
@@ -359,6 +368,9 @@ const Navigation = () => {
                   <Button
                     color="secondary"
                     component={Link}
+                    className='reg-btn'
+
+                    style={{ color:"white" }}
                     to="/signup"
                     startIcon={<AppRegistrationOutlined />}
                   >
@@ -371,12 +383,15 @@ const Navigation = () => {
             </div>
           </Hidden>
          {!data.user? <Button variant="contained" component={Link}
-                    to="/signin" style={{ backgroundColor: "#7F00FF","margin":"10px" ,color:"#fff" }} startIcon={<PostAdd />} >
+                        className='ad-btn'
+                     
+                    to="/signin" style={{ backgroundImage:" linear-gradient(to top bottom , #FF512F, #DD2476)","margin":"10px" ,color:"#fff",borderRadius:"7px" }} startIcon={<PostAdd />} >
                   Post Your Ad
                 </Button>:
                 <Button  component={Link}
-                    to="/subscriber/form" style={{ backgroundColor: "#7F00FF","margin":"10px",color:"#fff" }} startIcon={<PostAdd />} >
-                  Post Your Ad
+                    to="/subscriber/form"
+                     style={{"margin":"10px",color:"#fff",borderRadius:"7px" }} startIcon={<PostAdd />} >
+                 <span> Post Your Ad</span>
                 </Button>}
         </Toolbar>
       </AppBar>

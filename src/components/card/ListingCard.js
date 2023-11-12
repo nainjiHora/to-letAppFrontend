@@ -9,21 +9,23 @@ function ListingCard({ listing }) {
   const [onHover,setOnHover]=useState(false)
   var common=new Common()
   return (
-    <div onMouseEnter={()=>{setOnHover(true)}} onMouseLeave={()=>{setOnHover(false)}} style={{border:onHover?"2px solid red":"0px",margin:"2px"}}>
+    <div onMouseEnter={()=>{setOnHover(true)}} onMouseLeave={()=>{setOnHover(false)}} className="list-card">
       <div className="card-deck p-2">
-        <div className="card p-2">
+        <div className="card p-2" >
           <div>
             <Carousel>
               {listing.images.map(
                 (url, index) =>
                   url && (
                     <Carousel.Item key={index}>
+                      <div class="img-wrapper">
                       <img
                         src={url}
-                        className="smallimg d-block w-100 h-50"
+                        className="smallimg d-block w-100 h-40 "
                         alt={`Image ${index}`}
                         
                       />
+                      </div>
                     </Carousel.Item>
                   )
               )}

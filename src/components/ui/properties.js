@@ -20,10 +20,10 @@ const propertyTypes = [
 
 const Properties = () => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2}  className="properties-box">
       {propertyTypes.map((property, index) => (
         <Grid item xs={6} sm={4} md={2} key={index}>
-          <Paper elevation={3} style={{ textAlign: "center", padding: "16px" }}>
+          <Paper elevation={3} className="box-hover" style={{ textAlign: "center" }}>
             {property.icon}
             <Link
               to={`/ads/category/${property.type.toLowerCase()}`}

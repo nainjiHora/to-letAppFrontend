@@ -13,6 +13,7 @@ import Location from "../components/ui/Location";
 import Pagination from "@mui/material/Pagination";
 import EnquiryForm from "../components/form/EnquiryForm";
 import CircularProgress from "@mui/material/CircularProgress";
+import SearchIcon from '@mui/icons-material/Search';
 
 const Main = () => {
   const [auth] = useContext(AuthContext);
@@ -84,10 +85,10 @@ const Main = () => {
   return (
     <div>
       <div class="container">
-        <div class="searchwrapper">
+        <div class="searchwrapper" style={{borderRadius:"4px"}}>
           <div class="searchbox">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <input
                   type="text"
                   class="form-control"
@@ -129,12 +130,15 @@ const Main = () => {
                 </select>
               </div>
               <div class="col-md-1">
+                
                 <input
                   type="button"
                   onClick={handleSearch}
                   class="btn btn-primary"
-                  className="form-control"
+                  className="form-control hover-btn"
                   value="Search"
+                  
+                  
                 />
               </div>
             </div>

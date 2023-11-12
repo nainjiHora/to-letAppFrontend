@@ -16,14 +16,14 @@ const Location = () => {
     <div>
       <Grid container >
         {locations.map((location, index) => (
-          <Paper elevation={3} style={{   padding: "16px", margin: "5px", }}>
+          <Paper elevation={3} className="location-box" style={{   padding: "16px", margin: "10px" }}>
             <div className="d-flex justify-content-center"> {location.icon}</div>
             <Link
               to={`/ads/location/${location.name.toLowerCase()}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               {/* Link to /ads/location/locationName in lowercase */}
-              <Typography variant="subtitle1" className="text-danger fw-bold" >{location.name}</Typography>
+              <Typography variant="subtitle1" className=" fw-bold d-flex justify-content-center" >{location.name}</Typography>
             </Link>
           </Paper>
         ))}

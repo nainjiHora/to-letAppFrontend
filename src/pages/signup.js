@@ -9,6 +9,9 @@ import { AuthContext } from "../context/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import PersonIcon from '@mui/icons-material/Person';
+import EmailIcon from '@mui/icons-material/Email';
+import KeyIcon from '@mui/icons-material/Key';
 
 const SignUp = () => {
   const [auth, setAuth] = useContext(AuthContext);
@@ -58,16 +61,23 @@ const SignUp = () => {
         alignItems="center"
         justifyContent="center"
         minHeight="100vh"
+        margin={"2rem"}
         bgcolor="white"
-        borderRadius="4px"
+        // borderRadius="4px"
+        border={"2px solid #b30707"}
+        borderRadius={"5px"}
+        // padding={"5px"}
+
+        boxShadow={ "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px"}
+
         p={4}
       >
-        <Typography variant="h4" align="center" gutterBottom>
-          To-Let Services
+         <Typography variant="h3" className="wel-text" align="left"  gutterBottom>
+          Hii!
         </Typography>
-        <Typography variant="h5" align="center" gutterBottom>
-          Sign Up
-        </Typography>
+        <Typography variant="h5" className="wel-text-p"  align="center" gutterBottom>
+          Register a new account
+        </Typography> 
         <form onSubmit={onFinish} style={{ width: "100%" }}>
           <TextField
             label="Name"
@@ -76,6 +86,11 @@ const SignUp = () => {
             onChange={(e) => setName(e.target.value)}
             fullWidth
             margin="normal"
+            placeholder="Name"
+            InputProps={{
+              startAdornment: <PersonIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+              
+            }}
           />
           <TextField
             label="Email"
@@ -85,6 +100,12 @@ const SignUp = () => {
             onChange={(e) => setEmail(e.target.value)}
             fullWidth
             margin="normal"
+            placeholder="Email"
+            InputProps={{
+              startAdornment: <EmailIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+              
+            }}
+            
           />
           <TextField
             label="Password"
@@ -94,6 +115,11 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
             fullWidth
             margin="normal"
+            placeholder="Password"
+            InputProps={{
+              startAdornment: <KeyIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+              
+            }}
           />
           <TextField
             label="Confirm Password"
@@ -103,25 +129,33 @@ const SignUp = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             fullWidth
             margin="normal"
+            placeholder="Confirm Password"
+            InputProps={{
+              startAdornment: <KeyIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+              
+            }}
           />
           <Button
             variant="contained"
             color="primary"
             type="submit"
-            fullWidth
+            // fullWidth
             disabled={loading}
-            style={{ marginTop: "1rem" }}
+            // style={{ marginTop: "1rem" }}
+            className="sign-in-btn"
+            style={{margin: '0rem auto', display: "flex", padding:"7px 35px"}}
           >
             Sign Up
           </Button>
         </form>
+        <div style={{fontSize:"20px", fontWeight:"bold",marginTop: "1rem"}}>OR</div>
         <Typography
           variant="body2"
           align="center"
-          style={{ marginTop: "1rem" }}
+        
         >
-          Or{" "}
-          <MuiLink component="button" onClick={() => navigate("/signin")}>
+          
+          <MuiLink component="button" onClick={() => navigate("/signin")}   style={{ fontSize:"20px",marginTop:"5px" }} >
             Login!
           </MuiLink>
         </Typography>
