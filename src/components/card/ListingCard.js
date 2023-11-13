@@ -34,7 +34,7 @@ function ListingCard({ listing }) {
             </Carousel>
           </div>
          
-            <div className="card-body">
+            <div className="card-body bginc">
               <div className="d-flex justify-content-between"><h4 className="card-title">{common.capitalize(listing.title)}</h4><h5>{listing.price}</h5></div>
               <div className="d-flex justify-content-between"><h4 className="card-title">{common.capitalize(listing.state)}</h4><h5>{common.capitalize(listing.category)}</h5></div>
 
