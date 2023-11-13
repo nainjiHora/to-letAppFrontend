@@ -5,6 +5,7 @@ import { Typography, TextField } from "@mui/material";
 import { red } from "@mui/material/colors";
 import Table from "react-bootstrap/Table";
 import SubscriberLayout from "../../components/layout/SubscriberLayout";
+import SearchIcon from '@mui/icons-material/Search';
 
 const Payments = () => {
   const [auth, setAuth] = useContext(AuthContext);
@@ -37,17 +38,23 @@ const Payments = () => {
   };
 
   return (
-    <SubscriberLayout>
-      <Typography variant="h5" align="center" sx={{ color: red[500] }}>
+    
+    <SubscriberLayout >
+    <div className="payments">
+      <Typography variant="h5" align="center" sx={{ color: "#b30707",marginBottom:"10px" }}>
         Payments
       </Typography>
       <TextField
-        label="Search by Payment ID"
+        // label="Search by Payment ID"
+        placeholder="Search by Payment ID"
         variant="outlined"
-        fullWidth
+        // fullWidth
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-      />
+        InputProps={{
+          startAdornment: <SearchIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+          
+        }}      />
       {searchResults.length === 0 ? (
         <p>No payments available.</p>
       ) : (
@@ -80,6 +87,7 @@ const Payments = () => {
           </tbody>
         </Table>
       )}
+    </div>
     </SubscriberLayout>
   );
 };

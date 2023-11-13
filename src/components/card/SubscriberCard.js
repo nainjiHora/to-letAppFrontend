@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useState } from "react";
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 function SubscriberCard({ list, handleRenewClick}) {
   const [listing,setListing]=useState(list)
   const currentDate = moment().format("YYYY-MM-DD");
@@ -128,7 +129,7 @@ function boostListing(){
             <div className="card-body">
               <h4 className="card-title">{common.capitalize(listing.title)}</h4>
               
-                <p>Price : {listing.price}</p>
+                <p>Price : {listing.price}<CurrencyRupeeIcon fontSize="small"/></p>
                
               
             </div>
@@ -146,7 +147,7 @@ function boostListing(){
                 Renew
               </Button>):<>
         {listing.boost==0 && <button className="btn btn-primary w-100" onClick={()=>boostListing()}>Boost</button>}
-        <button className="btn btn-warning w-100 text-dark mt-2" onClick={()=>{changeBooked()}}>{listing.is_booked?"Mark as Available":"Mark as Booked"}</button>
+        <button className="btn  w-100 text-white mt-2" style={{backgroundColor:"#b30707",color:"#fff"}} onClick={()=>{changeBooked()}}>{listing.is_booked?"Mark as Available":"Mark as Booked"}</button>
 
               </>
             }

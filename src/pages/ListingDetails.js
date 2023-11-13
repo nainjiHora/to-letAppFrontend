@@ -275,7 +275,7 @@ function editListing(){
               
                
                   <div className="d-flex m-3 ">
-                  <span  style={{ fontWeight: "bold", fontSize: "20px",marginBottom:"20px" }}>Category:</span>
+                  <span  style={{ fontWeight: "bold", fontSize: "18px",marginBottom:"20px" }}>Category:</span>
                   {!editMode?<span style={{ fontWeight: "", fontSize: "20px",marginLeft:"30px" }}>{listingDetails.category}</span>:
                   <select className="form-control w-50 " style={{marginLeft:"20px",marginBottom:"5px"}} onChange={(e) => {setListingDetails({...listingDetails,category:e.target.value})}} >
                     <option value="flat">Flat</option>
@@ -292,12 +292,12 @@ function editListing(){
                   icon={faMapMarkerAlt}
                   className="text-primary me-2"
                 />
-                <strong style={{ fontSize: "20px" }}>{comman.capitalize(listingDetails.state)}</strong>
+                <strong style={{ fontSize: "18px" }}>{comman.capitalize(listingDetails.state)}</strong>
               </h6>
 
               <hr />
-              <div className="row m-2">
-                <div style={{ fontWeight: "bold", fontSize: "20px" }} className="col-2">
+              <div className="row m-2 ">
+                <div style={{ fontWeight: "bold", fontSize: "18px" }} className="col-6">
                   <span>Price:</span>
                 </div>
                 <div className="col-6">
@@ -319,8 +319,8 @@ function editListing(){
               )}
               <hr />
               <div className="row m-2">
-                <div className="col-2" style={{ fontWeight: "bold" }}>
-                  <span style={{ fontSize: "20px" }}>Description:</span >
+                <div className="  col-6" style={{ fontWeight: "bold" }}>
+                  <span style={{ fontSize: "18px" }}>Description:</span >
                 </div>
                 <div className="col-6">
                 {editMode?<input type="text" className="form-control" value={listingDetails.description} onInput={(e) => { setListingDetails({ ...listingDetails, description: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.description}</span>}
@@ -338,45 +338,45 @@ function editListing(){
                    <Link to="/signin" > <strong className="">Login to Continue</strong></Link>
                   </p>
                   <p>
-                    <span style={{ fontSize: "20px" }}> WhatsApp:</span>{" "}
+                    <span style={{ fontSize: "18px" }}> WhatsApp:</span>{" "}
                     <Link to="/signin"><strong className="">Login to Continue</strong></Link>
                   </p>
                 </div>
               ) : (
                 <div>
                   <div className="row m-2">
-                    <div className="col-2">
-                      <span style={{ fontWeight: "bold", fontSize: "20px" }}>   Contact:</span>
+                    <div className="col-6">
+                      <span style={{ fontWeight: "bold", fontSize: "18px" }}>Contact:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"20px" }} className={auth.user.isPaid?"":"blurme"}>{listingDetails.phone}</span>{!auth.user.isPaid&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid?"":"blurme"}>{listingDetails.phone}</span>{!auth.user.isPaid&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-2 m-2">
-                      <span style={{ fontWeight: "bold", fontSize: "20px" }}> WhatsApp:</span>
+                  <div className="row m-2">
+                    <div className="col-6 ">
+                      <span style={{ fontWeight: "bold", fontSize: "18px" }}>WhatsApp:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }} className={auth.user.isPaid?"":"blurme"}>{listingDetails.whatsappNumber}</span>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid?"":"blurme"}>{listingDetails.whatsappNumber}</span>}
                     </div>
                   </div>
                 </div>
               )}
               <div className="row m-2">
-                <div className="col-2">
-                  <span style={{ fontWeight: "bold", fontSize: "20px" }}> Zip Code:</span>
+                <div className="col-6">
+                  <span style={{ fontWeight: "bold", fontSize: "18px" }}>Zip Code:</span>
 
                 </div>
                 <div className="col-6">
 
-{editMode?<input type="number" className="form-control" value={listingDetails.zipCode} onInput={(e) => { setListingDetails({ ...listingDetails, zipCode: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.zipCode}</span>}                </div>
+{editMode?<input type="number" className="form-control" value={listingDetails.zipCode} onInput={(e) => { setListingDetails({ ...listingDetails, zipCode: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }}>{listingDetails.zipCode}</span>}                </div>
               </div>
               <div className="row m-2">
-                <div className="col-2">
-                  <span style={{ fontWeight: "bold", fontSize: "20px" }}>   Address:</span>
+                <div className="col-6">
+                  <span style={{ fontWeight: "bold", fontSize: "18x" }}>   Address:</span>
                 </div>
                 <div className="col-6">
-                {editMode?<input type="text" className="form-control" value={listingDetails.address} onInput={(e) => { setListingDetails({ ...listingDetails, address: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"20px" }}>{listingDetails.address}</span>}                </div>
+                {editMode?<input type="text" className="form-control" value={listingDetails.address} onInput={(e) => { setListingDetails({ ...listingDetails, address: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }}>{listingDetails.address}</span>}                </div>
               </div>
 
 

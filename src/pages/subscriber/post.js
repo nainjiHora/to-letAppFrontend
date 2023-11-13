@@ -8,7 +8,7 @@ import SubscriberLayout from "../../components/layout/SubscriberLayout";
 import SubscriberCard from "../../components/card/SubscriberCard";
 import { useNavigate } from "react-router-dom";
 import ChargesCalculator from "../../components/ChargesCalculator";
-
+import SearchIcon from '@mui/icons-material/Search';
 const Post = () => {
   const [auth, setAuth] = useContext(AuthContext);
   const [listings, setListings] = useState([]);
@@ -147,8 +147,8 @@ setListings(temp)
 
   return (
     <SubscriberLayout>
-      <Container>
-        <Typography variant="h4" align="center" sx={{ color: red[500] }}>
+      <Container className="posts" >
+        <Typography variant="h3" align="center" sx={{ color: "#b30707", margin:"20px 0" ,letterSpacing:"0.5px"}}>
           Your Ads
         </Typography>
         <TextField
@@ -156,7 +156,11 @@ setListings(temp)
           placeholder="Search by title"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          sx={{ width: "80%", marginBottom: 2 }}
+          sx={{ width: "50%", marginBottom: 2 }}
+          InputProps={{
+            startAdornment: <SearchIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+            
+          }}  
         />
 
         <Grid container>

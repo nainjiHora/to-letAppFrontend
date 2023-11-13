@@ -42,9 +42,10 @@ const Profile = () => {
             <Card
               sx={{
                 width: "100%",
-                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                boxShadow: "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
                 margin: "0 auto",
                 marginTop: "50px",
+                border:"1px solid #b30707"
               }}
               md={{
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
@@ -59,7 +60,7 @@ const Profile = () => {
               >
                 <Typography
                   variant="h5"
-                  color="primary"
+                  color="black"
                   sx={{ marginBottom: "20px" }}
                 >
                   User Profile
@@ -68,11 +69,11 @@ const Profile = () => {
                   sx={{
                     width: 80,
                     height: 80,
-                    backgroundColor: "red",
+                    backgroundColor: "#b30707",
                     marginBottom: "20px",
                   }}
                 >
-                  <AccountCircle fontSize="large" />
+                  <AccountCircle fontSize="large" style={{backgroundColor:"#b30707"}} />
                 </Avatar>
                 <Typography
                   color="textPrimary"

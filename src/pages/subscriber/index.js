@@ -2,6 +2,19 @@ import SubscriberLayout from "../../components/layout/SubscriberLayout";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth";
 import axios from "axios";
+import PersonIcon from '@mui/icons-material/Person';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import LanguageIcon from '@mui/icons-material/Language';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import HomeIcon from '@mui/icons-material/Home';
+import EditLocationAltIcon from '@mui/icons-material/EditLocationAlt';
+import PinDropIcon from '@mui/icons-material/PinDrop';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import {
   Typography,
   CssBaseline,
@@ -21,6 +34,7 @@ import {
 } from "@mui/icons-material";
 
 import toast from "react-hot-toast";
+import { bold } from "fontawesome";
 const UserProfile = () => {
   const [auth, setAuth] = useContext(AuthContext);
   const [user, setUser] = useState(null);
@@ -100,15 +114,19 @@ const UserProfile = () => {
   return (
     <SubscriberLayout>
       <CssBaseline />
-      <Container maxWidth="lg" sx={{ margin: "20px auto", padding: "20px" }}>
-        <Grid container justifyContent="center">
+      <Container maxWidth="lg" sx={{ margin: "0px auto", padding: "20px"}}>
+        <Grid container justifyContent="center" className="user-profile-card">
           <Grid item xs={12} md={8} lg={6}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
               <Typography
-                variant="h5"
+                variant="h4"
                 gutterBottom
                 sx={{ marginBottom: "20px" }}
+                fontWeight={bold}
+                
+             
               >
+               <span><AccountBoxIcon fontSize="large" style={{color:"#b30707"}}/></span>
                 User Profile
               </Typography>
 
@@ -123,6 +141,10 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <PersonIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
@@ -133,6 +155,10 @@ const UserProfile = () => {
                   value={formData.email}
                   disabled
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <EmailIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
@@ -140,15 +166,21 @@ const UserProfile = () => {
                   variant="outlined"
                   fullWidth
                   value={formData.phone}
+                  placeholder="Phone"
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <PhoneIphoneIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
                   label="Whatsapp Number"
+                  placeholder="Whatsapp Number"
                   variant="outlined"
                   fullWidth
                   value={formData.whatsappNumber}
@@ -157,10 +189,15 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <WhatsAppIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
                   label="Website"
+                  placeholder="Website"
                   variant="outlined"
                   fullWidth
                   value={formData.website}
@@ -169,10 +206,15 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <LanguageIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
                   label="Location"
+                  placeholder="Location"
                   variant="outlined"
                   fullWidth
                   value={formData.location}
@@ -181,11 +223,16 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <LocationOnIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
                   select
                   label="State"
+                  placeholder="State"
                   variant="outlined"
                   fullWidth
                   value={formData.state}
@@ -194,8 +241,12 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <PinDropIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 >
-                  <MenuItem value="">--Select state--</MenuItem>
+                  <MenuItem value="" selected>--Select State--</MenuItem>
                   <MenuItem value="Delhi">Delhi</MenuItem>
                   <MenuItem value="Jaipur">Jaipur</MenuItem>
                   <MenuItem value="Mumbai">Mumbai</MenuItem>
@@ -204,6 +255,7 @@ const UserProfile = () => {
 
                 <TextField
                   label="Zip Code"
+                  placeholder="Zip Code"
                   variant="outlined"
                   fullWidth
                   value={formData.zipCode}
@@ -212,10 +264,15 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <EditLocationAltIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
                   label="Address"
+                  placeholder="Home"
                   variant="outlined"
                   fullWidth
                   value={formData.address}
@@ -224,10 +281,15 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <HomeIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
                   label="Facebook"
+                  placeholder="Facebook"
                   variant="outlined"
                   fullWidth
                   value={formData.socialProfiles.facebook}
@@ -242,11 +304,16 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <FacebookIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
                   label="Youtube"
                   variant="outlined"
+                  placeholder="Youtube"
                   fullWidth
                   value={formData.socialProfiles.youtube}
                   onChange={(e) =>
@@ -260,10 +327,15 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <YouTubeIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
 
                 <TextField
                   label="Instagram"
+                  placeholder="Instagram"
                   variant="outlined"
                   fullWidth
                   value={formData.socialProfiles.instagram}
@@ -278,6 +350,10 @@ const UserProfile = () => {
                   }
                   disabled={!editing}
                   style={{ marginBottom: "10px" }}
+                  InputProps={{
+                    startAdornment: <InstagramIcon style={{color:"#b30707"}} sx={{ marginRight: 1 }}  />,
+                    
+                  }}
                 />
               </div>
 
@@ -293,14 +369,16 @@ const UserProfile = () => {
                   <div style={{ display: "flex", gap: "10px" }}>
                     <Button
                       variant="contained"
+                      className="save-profile-btn"
                       color="secondary"
-                      style={{ backgroundColor: "red", color: "white" }}
+                      style={{ backgroundColor: "#b30707", color: "white" }}
                       type="submit"
                     >
                       Save
                     </Button>
                     <Button
                       variant="contained"
+                      className="cancel-profilt-btn"
                       color="primary"
                       onClick={handleCancel}
                     >
@@ -309,8 +387,9 @@ const UserProfile = () => {
                   </div>
                 ) : (
                   <Button
+                  className="update-profile"
                     variant="contained"
-                    style={{ backgroundColor: "red", color: "white" }}
+                    style={{ backgroundColor: "#b30707", color: "white" }}
                     onClick={handleEdit}
                   >
                     Update Profile

@@ -51,6 +51,9 @@ const Form = () => {
             color="secondary"
             startIcon={<Block />}
             disabled
+            className='ad-btn'
+                     
+                    to="/signin" style={{ backgroundImage:" linear-gradient(to top bottom , #FF512F, #DD2476)","margin":"10px" ,color:"#fff",borderRadius:"7px" }} 
           >
             Post Your Ad
           </Button>
@@ -60,8 +63,11 @@ const Form = () => {
           <Button
             variant="contained"
             c
-            style={{ backgroundColor: "red", padding: "10px", margin: "10px" }}
+            // style={{ backgroundColor: "red", padding: "10px", margin: "10px" }}
             startIcon={<PostAdd />}
+            className='ad-btn'
+                     
+                    to="/signin" style={{ backgroundImage:" linear-gradient(to top bottom , #FF512F, #DD2476)","margin":"10px" ,color:"#fff",borderRadius:"7px" }} 
           >
             Post Your Ad
           </Button>

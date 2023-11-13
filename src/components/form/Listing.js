@@ -28,8 +28,10 @@ const formContainerStyle = {
   marginTop: "20px",
   padding: "20px",
   backgroundColor: "#FFFFFF",
-  border: `2px solid ${red[500]}`,
+  border: `2px solid #b30707`,
   borderRadius: "8px",
+  boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+  marginBottom:"20px"
 };
 
 const formGroupStyle = {
@@ -37,7 +39,7 @@ const formGroupStyle = {
 };
 
 const buttonStyle = {
-  backgroundColor: red[500],
+  backgroundColor: "#b30707",
   color: "#FFFFFF",
 };
 
@@ -548,6 +550,7 @@ console.log(response)
             <Button
               onClick={goToNextPage}
               variant="contained"
+              className="next-listing-"
               style={buttonStyle}
             >
               Next
