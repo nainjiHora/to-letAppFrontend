@@ -3,6 +3,8 @@ import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import Common from "../common";
 import { useState } from "react";
+import "./main.css"
+
 
 function ListingCard({ listing }) {
 
@@ -33,14 +35,11 @@ function ListingCard({ listing }) {
           </div>
          
             <div className="card-body">
-              <h4 className="card-title">{common.capitalize(listing.title)}</h4>
-              <b>
-                <p>Location: {listing.state}</p>
-                <p>Type : {listing.category}</p>
-                <p>Price : {listing.price}</p>
-              </b>
-              {onHover&&<Link to={`/ads/${listing._id}`} style={{ textDecoration: "none", color: "inherit" }}>
-              <button className="btn btn-danger w-100">To-Let</button>
+              <div className="d-flex justify-content-between"><h4 className="card-title">{common.capitalize(listing.title)}</h4><h5>{listing.price}</h5></div>
+              <div className="d-flex justify-content-between"><h4 className="card-title">{common.capitalize(listing.state)}</h4><h5>{common.capitalize(listing.category)}</h5></div>
+
+              {<Link to={`/ads/${listing._id}`} style={{ textDecoration: "none", color: "inherit" }}>
+              <button className="btn btn-danger w-100" style={{backgroundColor:onHover?"":"",border:onHover?"":"none"}}>More Details</button>
               </Link>}
 
             </div>

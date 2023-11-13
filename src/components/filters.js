@@ -23,7 +23,7 @@ const Filters = ({ sortOption, handleSortChange }) => {
   };
   return (
     <>
-      <div className="filter-btn " style={{marginRight:"4rem"}}>
+      <div className="filter-btn d-flex justify-content-end " style={{marginRight:"4rem"}}>
         <Dropdown onSelect={handleDropdownSelect}>
           <Dropdown.Toggle variant="default" id="filter-dropdown">
             {renderFilterIcon()} <span className="fw-bold" style={{fontSize:"1rem"}}>Filters</span>
