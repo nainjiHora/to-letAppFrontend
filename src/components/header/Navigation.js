@@ -335,7 +335,7 @@ const Navigation = () => {
           >
             {/* <Dashboard /> */}
 
-            <img src={"./images/logo.png"} alt="" />
+            <img src={"../images/logo.png"} alt="" />
              {/* ToLet */}
           </Typography>
           <Hidden smDown implementation="css">

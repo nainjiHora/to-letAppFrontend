@@ -155,6 +155,7 @@ setListings(temp)
           type="text"
           placeholder="Search by title"
           value={searchQuery}
+          className="add-search-box"
           onChange={(e) => setSearchQuery(e.target.value)}
           sx={{ width: "50%", marginBottom: 2 }}
           InputProps={{

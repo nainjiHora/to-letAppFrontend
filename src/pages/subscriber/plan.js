@@ -129,7 +129,7 @@ function Plans() {
   <div class="container-fluid">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4  col-md plan-card-box">
           <div class="plan-card card_red text-center">
             <div class="title">
               <i class="fa fa-paper-plane" aria-hidden="true"></i>
@@ -150,7 +150,7 @@ function Plans() {
             <a href="#" disabled >Expired</a>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-md plan-card-box">
           <div class="plan-card card_violet text-center">
             <div class="title">
               <i class="fa fa-plane" aria-hidden="true"></i>
@@ -173,7 +173,7 @@ function Plans() {
                     }}>Activate</a>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-md plan-card-box">
           <div class="plan-card card_three text-center">
             <div class="title">
               <i class="fa fa-rocket" aria-hidden="true"></i>

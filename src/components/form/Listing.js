@@ -357,12 +357,13 @@ console.log(response)
               </Box>
               <Box style={formGroupStyle}>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="category">Select a category</InputLabel>
+                  <InputLabel htmlFor="category"  >Select a category</InputLabel>
                   <Select
                     id="category*"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
+                    
                     <MenuItem value="flat">Flat</MenuItem>
                     <MenuItem value="house">House</MenuItem>
                     <MenuItem value="pg">PG</MenuItem>

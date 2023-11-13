@@ -203,22 +203,57 @@ Location box style  */
 /* media query */
 @media screen and (max-width: 699px){
   .forgot-box{
-    width: 95% !important;
+    width: 98% !important;
     margin:2rem auto !important;
   
   }
   .singin-box{
-    width: 95% !important;
+    width: 98% !important;
     margin:2rem auto !important;
     
   }
   .signup-box{
-    width: 95% !important;
+    width: 98% !important;
     margin:2rem auto !important;
     
   }
+  .posts{
+    width: 98% !important;
+    margin:2rem auto !important;
+  }
   .ad-btn{
     font-size: 10px !important ;
+  }
+  .plans{
+    width: 98% !important;
+    margin:2rem auto !important;
+  }
+  /* .plan-card-box{
+    margin-bottom: 30px;
+  } */
+  .add-search-box{
+    width: 100% !important;
+  }
+  .payments{
+    width: 98% !important;
+    margin:2rem auto !important;
+    
+  }
+  .bost-card{
+    width: 15rem !important;
+  }
+  .boot-row{
+    margin: 0px auto !important ;
+  }
+  .plan-card{
+    min-width: 100px !important;
+   
+  }
+  .plan-card-box{
+    margin-bottom:30px !important;
+  }
+  .plan-card a{
+width: 100px !important;
   }
 }
 

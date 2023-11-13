@@ -97,7 +97,7 @@ function SubscriberBoost() {
     <>
       <SubscriberLayout>
         <div className="container boots">
-          <div className="row m-4">
+          <div className="row mb-3 boot-row">
             <div className="col-12">
               <span className="fw-bold" style={{ fontSize: "20px" }}>
                 You have {auth.user.boost_available} Boost Available !{" "}
@@ -115,7 +115,7 @@ function SubscriberBoost() {
             </div>
               <h4 className=" mt-3 mb-3">Buy Boost</h4>
             <div className="col-12">
-              <div class="card" style={{ width: "18rem",border:"1px solid #b30707" ,padding:"5px",
+              <div class="card bost-card" style={{ width: "18rem",border:"1px solid #b30707" ,padding:"5px",
               boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
             }}>
                 <img
