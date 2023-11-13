@@ -56,6 +56,7 @@ const SignUp = () => {
   return (
     <Container maxWidth="md">
       <Box
+        className="signup-box"
         display="flex"
         flexDirection="column"
         alignItems="center"
