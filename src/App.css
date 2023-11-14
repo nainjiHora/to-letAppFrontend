@@ -166,7 +166,7 @@ Location box style  */
   background-color: #b30707 !important;
   color: white !important;
 
-  
+  /* color: #FF0000; */
   width: 100px !important;
   margin-bottom: 15px !important;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px  !important;
@@ -236,7 +236,7 @@ Location box style  */
     margin:2rem auto !important;
   }
   .ad-btn{
-    font-size: 10px !important ;
+    font-size: 7px !important ;
   }
   .plans{
     width: 98% !important;
@@ -252,6 +252,10 @@ Location box style  */
     width: 98% !important;
     margin:2rem auto !important;
     
+  }
+  .boots{
+    width: 98% !important;
+    margin:2rem auto !important;
   }
   .bost-card{
     width: 15rem !important;
@@ -269,8 +273,26 @@ Location box style  */
   .plan-card a{
 width: 100px !important;
   }
+  .papar-box{
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
+  }
+  .location-box{
+    width: none !important;
+  }
+  /* .ad-btn{
+    font-size: 7px;
+  } */
 }
 
+
+
+
+
+
+
+
+/* pagination-box */
 
 
 

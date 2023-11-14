@@ -165,7 +165,7 @@
 // }
 
 // export default Navigation;
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import {
   AppBar,
@@ -220,6 +220,8 @@ const Navigation = () => {
 
   
 
+  
+
   const toggleDrawer = () => {
     // setDrawerOpen(!drawerOpen);
     if(window.location.pathname==='/subscriber/home' ||window.location.pathname==='/subscriber/dashboard' ||window.location.pathname==='/subscriber/form' ||window.location.pathname==='/subscriber/plans' ||window.location.pathname==='/subscriber/payments'||window.location.pathname==='/subscriber/ads' ||window.location.pathname==='/subscriber/boost'  ){
@@ -240,8 +242,12 @@ const Navigation = () => {
 
    
   };
+  const sideBarHidden =()=>{
+    setDrawerOpen(!drawerOpen);
+  }
 
   const roleBasedLink = () => {
+    // setDrawerOpen(!drawerOpen);
     if (data.user?.role === 'Admin') {
       window.location.href = '/admin/home';
     } else if (data.user?.role === 'Subscriber') {
@@ -254,6 +260,7 @@ const Navigation = () => {
   };
 
   const signOut = () => {
+    // setDrawerOpen(!drawerOpen);
     localStorage.removeItem('auth');
     toast.success("Signout  Success");
 
@@ -281,7 +288,7 @@ const Navigation = () => {
     {showDeshbourdSideBar ? <div>
      
       {tabData.map((tab, index) => (
-      <ListItem button component={Link} to={tab.path}>
+      <ListItem button onClick={sideBarHidden} component={Link} to={tab.path}>
               <ListItemIcon>
               {tab.icon}
               </ListItemIcon>
@@ -291,19 +298,19 @@ const Navigation = () => {
              
     </div>:<div>
       <List>
-      <ListItem button component={Link} to="/">
+      <ListItem button onClick={sideBarHidden}  component={Link} to="/">
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} to="/about">
+        <ListItem button onClick={sideBarHidden}  component={Link} to="/about">
           <ListItemIcon>
             <Info />
           </ListItemIcon>
-          <ListItemText primary="About" />
+          <ListItemText  primary="About" />
         </ListItem>
-        <ListItem button component={Link} to="/contact">
+        <ListItem button onClick={sideBarHidden}   component={Link} to="/contact">
           <ListItemIcon>
             <Phone />
           </ListItemIcon>
@@ -312,19 +319,19 @@ const Navigation = () => {
 
         {!data.user && (
           <>
-           <ListItem button component={Link} to="/signin">
+           <ListItem button onClick={sideBarHidden} component={Link} to="/signin">
               <ListItemIcon>
                 <LoginOutlined />
               </ListItemIcon>
-              <ListItemText primary="Login" />
+              <ListItemText  primary="Login" />
               </ListItem>
-              <ListItem button component={Link} to="/signup">
+              <ListItem button onClick={sideBarHidden} component={Link} to="/signup">
               <ListItemIcon>
                 <AppRegistrationOutlined />
               </ListItemIcon>
               <ListItemText primary="Register" />
               </ListItem>
-              <ListItem button component={Link} to="/signin">
+              <ListItem button onClick={sideBarHidden} component={Link} to="/signin">
               <ListItemIcon>
                 <PostAddOutlined />
               </ListItemIcon>
@@ -339,13 +346,13 @@ const Navigation = () => {
       <List>
         {data.user && (
           <>
-            <ListItem button component={Link} to="/subscriber/form">
+            <ListItem button onClick={sideBarHidden}  component={Link} to="/subscriber/form">
           <ListItemIcon>
             <PostAddOutlined />
           </ListItemIcon>
           <ListItemText primary="Post Ad" />
         </ListItem>
-            <ListItem button onClick={roleBasedLink}>
+            <ListItem button  onClick={roleBasedLink}>
               <ListItemIcon>
                 <Dashboard />
               </ListItemIcon>

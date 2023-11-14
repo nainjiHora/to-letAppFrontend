@@ -79,11 +79,12 @@ const InquiryForm = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={1}>
-            <Grid item xs={4} sm={4}>
+            <Grid item xs={12} sm={4}>
               <TextField
                 // label="Name"
                 name="name"
                 variant="outlined"
+                className="input-box"
                 fullWidth
                 required
                 value={formData.name}
@@ -96,11 +97,12 @@ const InquiryForm = () => {
                 
               />
             </Grid>
-            <Grid item xs={4} sm={4}>
+            <Grid item xs={12} sm={4}>
               <TextField
                 // label="Email"
                 name="email"
                 variant="outlined"
+                className="input-box"
                 fullWidth
                 required
                 value={formData.email}
@@ -112,14 +114,16 @@ const InquiryForm = () => {
                 }}
               />
             </Grid>
-            <Grid item xs={4} sm={4}>
+            <Grid item xs={12} sm={4}>
               <TextField
                 // label="Mobile"
                 name="mobile"
                 variant="outlined"
+                className="input-box"
                 fullWidth
                 required
                 value={formData.mobile}
+
                 onChange={handleChange}
                 placeholder="Phone"
                 InputProps={{
@@ -135,6 +139,7 @@ const InquiryForm = () => {
                 name="comment"
                 variant="outlined"
                 placeholder="Comment / Message"
+                className="input-box"
                 fullWidth
                 rows={4}
                 required

@@ -43,8 +43,8 @@ const Profile = () => {
               sx={{
                 width: "100%",
                 boxShadow: "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
-                margin: "0 auto",
-                marginTop: "50px",
+                margin: "50px auto",
+                // marginTop: "50px",
                 border:"1px solid #b30707"
               }}
               md={{

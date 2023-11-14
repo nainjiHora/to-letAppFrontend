@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import CircularProgress from "@mui/material/CircularProgress";
+
 const LoadingToRedirect = ({ path = "/" }) => {
   const [count, setCount] = useState(3);
   const navigate = useNavigate();
@@ -25,7 +27,8 @@ const LoadingToRedirect = ({ path = "/" }) => {
           top: "50%",
         }}
       >
-        Redirecting in {count} second{count !== 1 ? "s" : ""}
+        {/* Redirecting in {count} second{count !== 1 ? "s" : ""} */}
+        <CircularProgress style={{position:"relative", left:"50%",marginTop:"70px ",color:"#b30707",}}/>
       </p>
     </div>
   );

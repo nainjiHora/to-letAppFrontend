@@ -81,7 +81,7 @@ const Main = () => {
 
     fetchListings();
   };
-
+  
   return (
     <div>
       <div class="container">
@@ -151,7 +151,7 @@ const Main = () => {
       <Container maxWidth="md"></Container>
 
       <Filters sortOption={sortOption} handleSortChange={handleSortChange} />
-      {errMsg? <span style={{display:"inline-block",position:"relative", left:"40%",margin:"45px 0px", color:"red",}}>Ooops....!! Something Wants Wrong</span> :isLoader? <CircularProgress style={{position:"relative", left:"50%",marginTop:"70px ",color:"red",}}/>:
+      {errMsg? <span style={{display:"inline-block",position:"relative", left:"40%",margin:"45px 0px", color:"red",}}>Ooops....!! Something Wants Wrong</span> :isLoader? <CircularProgress style={{position:"relative", left:"50%",marginTop:"70px ",color:"#b30707",}}/>:
       <Grid container>
         {listings.map((listing, idx) => (
           <Grid item xs={12} md={3} key={listing._id}>
@@ -166,8 +166,9 @@ const Main = () => {
         page={page}
         size="large"
         onChange={handlePageChange}
+        className="pagination-box"
         color="primary"
-        style={{ marginTop: 20, alignSelf: "flex-end",marginBottom:20 }}
+        style={{ marginTop: 20, alignSelf: "flex-end",marginBottom:20,color:"#b30707" }}
       />
     </div>
       <div className="d-flex justify-content-center">

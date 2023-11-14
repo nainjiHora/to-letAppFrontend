@@ -37,7 +37,7 @@ const tabData = [
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#FF0000",
+      main: "#b30707",
     },
     secondary: {
       main: "#FFFFFF",
