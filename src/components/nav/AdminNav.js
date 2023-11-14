@@ -12,6 +12,7 @@ import {
 } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useWindowWidth } from "@react-hook/window-size";
+import AddIcon from '@mui/icons-material/Add';
 
 const tabData = [
   { label: "Home", icon: <AttachMoney />, path: "/admin/home" },

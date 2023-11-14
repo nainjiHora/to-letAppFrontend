@@ -17,6 +17,7 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useWindowWidth } from "@react-hook/window-size";
 
+
 const tabData = [
   { label: "Dashboard", icon: <Dashboard />, path: "/subscriber/dashboard" },
   {
@@ -50,38 +51,46 @@ const SubscriberNav = () => {
   const onlyWidth = useWindowWidth();
 
   const [collapsed, setCollapsed] = useState(onlyWidth < 800);
-
+  const [showSidebar, setShowSidebar] = useState(false);
   useEffect(() => {
     setCurrent(location.pathname);
   }, [location.pathname]);
 
   useEffect(() => {
+    
     if (onlyWidth < 800) {
-      setCollapsed(true);
+      // setCollapsed(true);
+      setShowSidebar(false)
     } else if (onlyWidth >= 800) {
       setCollapsed(false);
+      setShowSidebar(true)
     }
   }, [onlyWidth]);
 
   const toggleMiniDrawer = () => {
+    if(onlyWidth >= 800){
     setCollapsed(!collapsed);
+    console.log("this ")
+  }
+
   };
 
   return (
+    <>{showSidebar &&
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex", position: "relative" }}>
-        <Drawer
+        {/* <Drawer
           variant="permanent"
           open={!collapsed}
           sx={{
-            width: collapsed ? 73 : "100%",
+            width: collapsed ? 0 : "100%",
             flexShrink: 0,
             [`& .MuiDrawer-paper`]: {
-              width: collapsed ? 73 : "100%",
+              width: collapsed ? 75 : "100%",
               boxSizing: "border-box",
             },
           }}
-        >
+        > */}
           <Box
             sx={{
               display: "flex",
@@ -90,13 +99,13 @@ const SubscriberNav = () => {
               p: 1,
             }}
           >
-            <IconButton
+            {/* <IconButton
               color="inherit"
               aria-label="toggle drawer"
               onClick={toggleMiniDrawer}
             >
               {collapsed ? <ChevronLeft /> : <Menu />}
-            </IconButton>
+            </IconButton> */}
           </Box>
           <Tabs
             orientation="vertical"
@@ -118,9 +127,10 @@ const SubscriberNav = () => {
               />
             ))}
           </Tabs>
-        </Drawer>
+        {/* </Drawer> */}
       </Box>
-    </ThemeProvider>
+    </ThemeProvider>}
+    </>
   );
 };
 

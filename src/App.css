@@ -199,7 +199,21 @@ Location box style  */
   text-decoration: none !important;
 }
 
-
+/* @media screen and (max-width: 340px){
+  .nav-logo{
+    width: 50% !important;
+  }
+  .ad-btn{
+    font-size: 7px !important ;
+  }
+} */
+/* media query */
+/* @media screen and (max-width: 340px){
+  
+  .ad-btn{
+    font-size: 5px !important ;
+  }
+} */
 /* media query */
 @media screen and (max-width: 699px){
   .forgot-box{

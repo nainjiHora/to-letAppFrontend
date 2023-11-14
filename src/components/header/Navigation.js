@@ -166,6 +166,7 @@
 
 // export default Navigation;
 import React, { useContext, useState } from 'react';
+import HomeIcon from '@mui/icons-material/Home';
 import {
   AppBar,
   Toolbar,
@@ -193,6 +194,19 @@ import {
   PostAdd,
   PostAddOutlined,
 } from '@mui/icons-material';
+import {
+  
+  AccountCircle,
+  AttachMoney,
+  Description,
+  Payment,
+  FormatListBulleted,
+  
+  ChevronLeft,
+  ROcketIcon,
+  RocketLaunch,
+  MilitaryTech
+} from "@mui/icons-material";
 
 import { AuthContext } from '../../context/auth';
 
@@ -202,11 +216,29 @@ const Navigation = () => {
   const [data] = useContext(AuthContext);
   const [auth, setAuth] = useContext(AuthContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [showDeshbourdSideBar , setDeshbourdSideBar]=useState(false)
 
   
 
   const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
+    // setDrawerOpen(!drawerOpen);
+    if(window.location.pathname==='/subscriber/home' ||window.location.pathname==='/subscriber/dashboard' ||window.location.pathname==='/subscriber/form' ||window.location.pathname==='/subscriber/plans' ||window.location.pathname==='/subscriber/payments'||window.location.pathname==='/subscriber/ads' ||window.location.pathname==='/subscriber/boost'  ){
+      setDrawerOpen(!drawerOpen);
+      setDeshbourdSideBar(true)
+      console.log(showDeshbourdSideBar
+      )
+    }
+
+    else if(window.location.pathname==='/'){
+      setDrawerOpen(!drawerOpen);
+      setDeshbourdSideBar(false)
+    }
+    else{
+      setDrawerOpen(!drawerOpen);
+      console.log(showDeshbourdSideBar)
+    }
+
+   
   };
 
   const roleBasedLink = () => {
@@ -231,10 +263,40 @@ const Navigation = () => {
     });
     window.location.href = '/signin';
   };
+  const tabData = [
+    { label: "Home", icon: <HomeIcon />, path: "/" },
+    { label: "Dashboard", icon: <Dashboard />, path: "/subscriber/dashboard" },
+    {label: "Account Detail",icon: <AccountCircle />,path: "/subscriber/home"},
+  
+    { label: "Listing Form", icon: <Description />, path: "/subscriber/form" },
+    {label:"Boosts",icon:<RocketLaunch></RocketLaunch> ,path:"/subscriber/boost"},
+    {label:"Plans",icon:<MilitaryTech></MilitaryTech> ,path:"/subscriber/plans"},
+  
+    { label: "Payments", icon: <Payment />, path: "/subscriber/payments" },
+    { label: "Listings", icon: <FormatListBulleted />, path: "/subscriber/ads" },
+  ];
 
   const list = (
     <div>
+    {showDeshbourdSideBar ? <div>
+     
+      {tabData.map((tab, index) => (
+      <ListItem button component={Link} to={tab.path}>
+              <ListItemIcon>
+              {tab.icon}
+              </ListItemIcon>
+              <ListItemText primary={tab.label} />
+      </ListItem>
+       ))}
+             
+    </div>:<div>
       <List>
+      <ListItem button component={Link} to="/">
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
         <ListItem button component={Link} to="/about">
           <ListItemIcon>
             <Info />
@@ -251,23 +313,23 @@ const Navigation = () => {
         {!data.user && (
           <>
            <ListItem button component={Link} to="/signin">
- <ListItemIcon>
-   <LoginOutlined />
- </ListItemIcon>
- <ListItemText primary="Login" />
-</ListItem>
-<ListItem button component={Link} to="/signup">
- <ListItemIcon>
-   <AppRegistrationOutlined />
- </ListItemIcon>
- <ListItemText primary="Register" />
-</ListItem>
-<ListItem button component={Link} to="/signin">
- <ListItemIcon>
-   <PostAddOutlined />
- </ListItemIcon>
- <ListItemText primary="Post Ad" />
-</ListItem>
+              <ListItemIcon>
+                <LoginOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Login" />
+              </ListItem>
+              <ListItem button component={Link} to="/signup">
+              <ListItemIcon>
+                <AppRegistrationOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Register" />
+              </ListItem>
+              <ListItem button component={Link} to="/signin">
+              <ListItemIcon>
+                <PostAddOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Post Ad" />
+              </ListItem>
           </>
 
         )}
@@ -298,8 +360,9 @@ const Navigation = () => {
           </>
         )}
       </List>
+    </div>}
     </div>
-  );
+  ); 
   const appBarStyle = {
     backgroundColor: '#b30707', // Background color set to red
   };
@@ -335,7 +398,7 @@ const Navigation = () => {
           >
             {/* <Dashboard /> */}
 
-            <img src={"../images/logo.png"} alt="" />
+            <img className='nav-logo' src={"../images/logo.png"} alt="" />
              {/* ToLet */}
           </Typography>
           <Hidden smDown implementation="css">
