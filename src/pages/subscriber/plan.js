@@ -19,14 +19,14 @@ function Plans() {
           localStorage.setItem("auth", JSON.stringify(temp));
           Swal.fire({
             title: "Plan Subscribed",
-            text: "5% plan Subscribed to yor account",
+            text: "5% plan Subscribed to your account",
             icon: "success",
             confirmButtonText: "Cool",
           });
         } else {
           Swal.fire({
             title: "Plan Subscription Failed",
-            text: "Something Went wrong",
+            text: "Something Went Wrong",
             icon: "error",
             confirmButtonText: "ok",
           });
