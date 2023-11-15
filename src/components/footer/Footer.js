@@ -19,7 +19,7 @@ const Footer = () => {
             </Typography>
             <ul className="list-unstyled ">
               <li className='mb-2'>
-                <Link to="/" className="text-white li-item">
+                <Link to="tel:9166703505" className="text-white li-item">
                  <LocalPhoneIcon></LocalPhoneIcon> Call now
                 </Link>
               </li>
@@ -52,9 +52,12 @@ const Footer = () => {
               </li>
 
               <li>
-          <Facebook className="text-white me-3" />
-          <Twitter className="text-white me-3" />
-          <Instagram className="text-white" /></li>
+              <Link to='https://www.facebook.com/profile.php?id=61550685055707'  target="_blank"><Facebook className="text-white me-3"  /></Link>
+          <Link to='https://twitter.com/To_Let_services' target="_blank"><Twitter className="text-white me-3" /></Link>
+          <Link to='https://instagram.com/to_letservices?igshid=YzAwZjE1ZTI0Zg%3D%3D&utm_source=qr' target="_blank"><Instagram className="text-white me-3"  /> </Link>
+          
+          
+          </li>
           <Typography variant="body2" style={{ marginTop: '10px' }}>
           &copy; 2023 to-let.live
         </Typography>

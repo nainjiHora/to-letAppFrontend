@@ -19,14 +19,14 @@ function Plans() {
           localStorage.setItem("auth", JSON.stringify(temp));
           Swal.fire({
             title: "Plan Subscribed",
-            text: "5% plan Subscribed to yor account",
+            text: "5% plan Subscribed to your account",
             icon: "success",
             confirmButtonText: "Cool",
           });
         } else {
           Swal.fire({
             title: "Plan Subscription Failed",
-            text: "Something Went wrong",
+            text: "Something Went Wrong",
             icon: "error",
             confirmButtonText: "ok",
           });
@@ -177,7 +177,7 @@ function Plans() {
           <div class="plan-card card_three text-center">
             <div class="title">
               <i class="fa fa-rocket" aria-hidden="true"></i>
-              <h2>Standart</h2>
+              <h2>Standard</h2>
             </div>
             <div class="price">
               <h5>999 Plan</h5>

@@ -304,7 +304,7 @@ const Navigation = () => {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button onClick={sideBarHidden}  component={Link} to="/about">
+        <ListItem button onClick={sideBarHidden}  component={Link} to="/about-us">
           <ListItemIcon>
             <Info />
           </ListItemIcon>

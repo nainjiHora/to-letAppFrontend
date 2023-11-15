@@ -148,7 +148,7 @@ setListings(temp)
   return (
     <SubscriberLayout>
       <Container className="posts" >
-        <Typography variant="h3" align="center" sx={{ color: "#b30707", margin:"20px 0" ,letterSpacing:"0.5px"}}>
+        <Typography variant="h3" align="center" className="ads-heading" sx={{ color: "#b30707", margin:"20px 0" ,letterSpacing:"0.5px"}}>
           Your Ads
         </Typography>
         <TextField
