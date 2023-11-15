@@ -310,7 +310,7 @@ const Navigation = () => {
           </ListItemIcon>
           <ListItemText  primary="About" />
         </ListItem>
-        <ListItem button onClick={sideBarHidden}   component={Link} to="/contact">
+        <ListItem button onClick={sideBarHidden}   component={Link} to="/about-us">
           <ListItemIcon>
             <Phone />
           </ListItemIcon>

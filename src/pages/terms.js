@@ -3,8 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const TermsOfServicePage = () => {
   return (
-    <Container>
-      <Row className="mt-5">
+    <Container className='terms-condition'>
+      <Row className="mt-3">
         <Col>
           <h3>TERMS OF SERVICE</h3>
           <p>Last updated: May 29, 2023</p>

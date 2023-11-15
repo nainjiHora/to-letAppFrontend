@@ -3,8 +3,8 @@ import { Container, Typography, Paper, Box } from '@mui/material';
 
 const PrivacyPolicy = () => {
   return (
-    <Container maxWidth="lg">
-      <Paper elevation={3}>
+    <Container maxWidth="lg" >
+      <Paper elevation={3} className='privacy-policy'>
         <Box p={3} >
           <Typography variant="h4" gutterBottom>
             Privacy Policy
