@@ -61,6 +61,7 @@ const Profile = () => {
                 <Typography
                   variant="h5"
                   color="black"
+                  
                   sx={{ marginBottom: "20px" }}
                 >
                   User Profile

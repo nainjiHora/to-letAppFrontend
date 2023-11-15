@@ -342,7 +342,7 @@ console.log(response)
     <Container maxWidth="lg">
       {currentPage === 1 && (
         <form onSubmit={handleWithoutChargesSubmit} style={formContainerStyle}>
-          <Typography variant="h4" align="center" gutterBottom>
+          <Typography variant="h4" align="center" className="listing-heading" gutterBottom>
             Listing Information
           </Typography>
           <Grid container spacing={3}>
@@ -357,9 +357,11 @@ console.log(response)
               </Box>
               <Box style={formGroupStyle}>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="category"  >Select a category</InputLabel>
+                <InputLabel htmlFor="category"   >Select a category</InputLabel>
                   <Select
-                    id="category*"
+                   labelId="Select-category"
+                   label="Select a category"
+                    id="category"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
@@ -386,8 +388,10 @@ console.log(response)
 
               <Box style={formGroupStyle}>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="pricingType">Price Type</InputLabel>
+                <InputLabel htmlFor="pricingType" id="pricingType"  >Price Type</InputLabel>
                   <Select
+                     labelId="pricingType"
+                     label="pricingType"
                     id="pricingType*"
                     value={pricingType}
                     onChange={(e) => setPricingType(e.target.value)}
@@ -432,8 +436,10 @@ console.log(response)
             <Grid item xs={12} md={6}>
               <Box style={formGroupStyle}>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="priceUnit">Price Unit</InputLabel>
+                <InputLabel htmlFor="priceUnit">Price Unit</InputLabel>
                   <Select
+                  labelId="priceUnit"
+                  label="priceUnit"
                     id="priceUnit"
                     value={priceUnit}
                     onChange={(e) => setPriceUnit(e.target.value)}
@@ -458,15 +464,17 @@ console.log(response)
             </Grid>
           </Grid>
 
-          <Typography variant="h4" align="center" gutterBottom>
+          <Typography variant="h4" align="center"  className="listing-heading" gutterBottom>
             Contact Details
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Box style={formGroupStyle}>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="state">State</InputLabel>
+                <InputLabel id="state" htmlFor="state">State</InputLabel>
                   <Select
+                   labelId="state"
+                   label="state"
                     id="state"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
@@ -514,7 +522,7 @@ console.log(response)
             </Grid>
           </Grid>
 
-          <Typography variant="h4" align="center" gutterBottom>
+          <Typography variant="h4" className="listing-heading" align="center" gutterBottom>
             Upload Images
           </Typography>
           <Grid container spacing={3}>

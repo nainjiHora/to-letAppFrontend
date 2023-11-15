@@ -121,6 +121,7 @@ const UserProfile = () => {
               <Typography
                 variant="h4"
                 gutterBottom
+                className="user-profile"
                 sx={{ marginBottom: "20px" }}
                 fontWeight={bold}
                 

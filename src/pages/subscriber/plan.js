@@ -177,7 +177,7 @@ function Plans() {
           <div class="plan-card card_three text-center">
             <div class="title">
               <i class="fa fa-rocket" aria-hidden="true"></i>
-              <h2>Standart</h2>
+              <h2>Standard</h2>
             </div>
             <div class="price">
               <h5>999 Plan</h5>

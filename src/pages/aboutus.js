@@ -3,8 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const AboutUsPage = () => {
   return (
-    <Container>
-      <Row className="mt-5">
+    <Container className='about-us'>
+      <Row className="mt-3">
         <Col>
           <h1>About Us</h1>
           <p>
