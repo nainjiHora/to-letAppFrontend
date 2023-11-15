@@ -455,14 +455,13 @@ const Navigation = () => {
          {!data.user? <Button variant="contained" component={Link}
                         className='ad-btn'
                      
-                    to="/signin" style={{ backgroundImage:" linear-gradient(to top bottom , #FF512F, #DD2476)","margin":"10px" ,color:"#fff",borderRadius:"7px" }} startIcon={<PostAdd />} >
-                  Post Your Ad
+                    to="/signin" style={{ backgroundImage:" linear-gradient(to top bottom , #FF512F, #DD2476)","margin":"10px" ,color:"#fff",borderRadius:"7px" }} startIcon={<PostAdd />} >Post Your Ad
                 </Button>:
                 <Button  component={Link}
                 className='ad-btn'
                     to="/subscriber/form"
                     style={{ backgroundImage:" linear-gradient(to top bottom , #FF512F, #DD2476)","margin":"10px" ,color:"#fff",borderRadius:"7px" }} startIcon={<PostAdd />} >
-                 <span> Post Your Ad</span>
+                 <span>Post Your Ad</span>
                 </Button>}
         </Toolbar>
       </AppBar>
