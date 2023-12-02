@@ -53,6 +53,12 @@ const TermsOfServicePage = () => {
               <li>Engage in any data mining, scraping, or other similar activity.</li>
               <li>Use any automated means or interface not provided by us to access the Service or to extract data.</li>
               <li>Attempt to gain unauthorized access to any portion of the Service or any other accounts, computer systems, or networks connected to the Service.</li>
+              <li>No rent agreement will be provide by us</li>
+              <li>You have to verify the person by seeing in govt identity</li>
+              <li>We are not resposible for any miss happening</li>
+              <li>No refund are their in case of any miss happening from your end</li>
+              <li>We only provide the brokers / owners and their properties details</li>
+              <li>We only provide the people toyour property we are not responsible for any damage</li>
             </ul>
           </p>
         </Col>
