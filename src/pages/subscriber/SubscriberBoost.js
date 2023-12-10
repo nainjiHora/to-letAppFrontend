@@ -97,18 +97,12 @@ function SubscriberBoost() {
       console.error("Error saving listing:", error);
     }
   };
-  var urls
-  var ab
-  var cd
 
   function ccavenue(){
     axios.post('/try',{}).then((data)=>{
-      // setUrl(data.data.paymentUrl)
-      // setEnc(data.data.paymentEnc)
-      // setAccessCode(data.data.payment_key)
-      urls=data.data.paymentUrl
-      ab=data.data.paymentEnc
-      cd=data.data.payment_key
+      setUrl(data.data.paymentUrl)
+      setEnc(data.data.paymentEnc)
+      setAccessCode(data.data.payment_key)
       pay();
     })
   }
@@ -170,9 +164,9 @@ function SubscriberBoost() {
             </div>
           </div>
         </div>
-        <form ref={form} id="nonseamless" method="post" name="redirect" action={urls}>
-    <input type="hidden" id="encRequest" name="encRequest" value={ab} />
-    <input type="hidden" name="access_code" id="access_code" value={cd} />
+        <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
+    <input type="hidden" id="encRequest" name="encRequest" value={encRequest} />
+    <input type="hidden" name="access_code" id="access_code" value={accessCode} />
   </form>
       </SubscriberLayout>
     </>
