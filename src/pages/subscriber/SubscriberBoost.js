@@ -170,9 +170,9 @@ function SubscriberBoost() {
             </div>
           </div>
         </div>
-        <form ref={form} id="nonseamless" method="post" name="redirect" action={'https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction'}>
-    <input type="hidden" id="encRequest" name="encRequest" value={'e4b77297568a463661331b814a09a0e87f56a689c903798899d1ebdf049d7c4046f51ea8fb234aa67323f5b0dfb44c0bd9d3f8a9930ae17f1345d785b20fbb3704066eebef496e48010a271337fd4eb428389515504ca3ac02b5c6ffb2aea6f0ec6b4be82f9cd50a351eb69b2254138b1a9fddb592b091337fb02ab92669a8c90a0f2bcf6cdcb00d611159dd876387b4fc6a4b9fd08fd1a6f671445dc018d2d78884985f8a2a680ae9901d925a5b13cbd0ba9efc05a3ca8b4990480dbf7a2312ff057b1af65b7a3c636139f69b7401af696d6234d703733549b7d40facb4a51c91fa96814a2a7f6c70b6287becdaa44e'} />
-    <input type="hidden" name="access_code" id="access_code" value={'AVPP37KL58AJ50PPJA'} />
+        <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
+    <input  id="encRequest" name="encRequest" value={encRequest} />
+    <input  name="access_code" id="access_code" value={accessCode} />
   </form>
       </SubscriberLayout>
     </>
