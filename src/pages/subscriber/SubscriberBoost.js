@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import SubscriberLayout from "../../components/layout/SubscriberLayout";
 import axios from "axios";
 import Swal from "sweetalert2";
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 function SubscriberBoost() {
+  let form=useRef()
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("auth")).user
   );
   const [auth, setAuth] = useState(JSON.parse(localStorage.getItem("auth")));
+  const [url,setUrl]=useState("")
+  const [accessCode,setAccessCode]=useState("")
+  const [encRequest,setEnc]=useState("")
+
   var buyBoost = async () => {
     try {
       const amount = 100;
@@ -93,6 +98,19 @@ function SubscriberBoost() {
     }
   };
 
+  function ccavenue(){
+    axios.post('/try',{}).then((data)=>{
+      setUrl(data.data.paymentUrl)
+      setEnc(data.data.paymentEnc)
+      setAccessCode(data.data.payment_key)
+      pay();
+    })
+  }
+
+  function pay(){
+    form.current && form.current.submit();
+  }
+
   return (
     <>
       <SubscriberLayout>
@@ -137,7 +155,7 @@ function SubscriberBoost() {
 
                   <button
                     class="btn boost-btn w-100 m-auto"
-                    onClick={() => buyBoost()}
+                    onClick={() => ccavenue()}
                   >
                     Buy Boost
                   </button>
@@ -146,6 +164,10 @@ function SubscriberBoost() {
             </div>
           </div>
         </div>
+        <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
+    <input type="hidden" id="encRequest" name="encRequest" value={encRequest} />
+    <input type="hidden" name="access_code" id="access_code" value={accessCode} />
+  </form>
       </SubscriberLayout>
     </>
   );
