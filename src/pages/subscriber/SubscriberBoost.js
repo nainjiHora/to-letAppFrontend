@@ -111,7 +111,9 @@ function SubscriberBoost() {
     
    setTimeout(() => {
     console.log(encRequest)
-     form.current && form.current.submit();
+    console.log(url)
+    console.log(accessCode)
+    //  form.current && form.current.submit();
    }, 5000);
   }
 
