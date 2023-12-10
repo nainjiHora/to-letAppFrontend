@@ -113,7 +113,7 @@ function SubscriberBoost() {
     console.log(encRequest)
     console.log(url)
     console.log(accessCode)
-    //  form.current && form.current.submit();
+     form.current && form.current.submit();
    }, 5000);
   }
 
