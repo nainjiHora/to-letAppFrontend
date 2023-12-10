@@ -108,7 +108,9 @@ function SubscriberBoost() {
   }
 
   function pay(){
-    form.current && form.current.submit();
+   setTimeout(() => {
+     form.current && form.current.submit();
+   }, 5000);
   }
 
   return (
