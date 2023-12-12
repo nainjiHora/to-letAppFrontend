@@ -101,7 +101,7 @@ function SubscriberBoost() {
   function ccavenue(){
     axios.post('/try',{}).then((data)=>{
       setUrl(data.data.paymentUrl)
-      setEnc(data.data.paymentEnc)
+      setEnc(data.data.key)
       setAccessCode(data.data.key)
       pay();
     })
