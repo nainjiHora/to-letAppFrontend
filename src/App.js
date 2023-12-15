@@ -36,6 +36,7 @@ import { Toaster } from 'react-hot-toast';
 import Plans from './pages/subscriber/plan';
 import ReactWhatsapp from 'react-whatsapp';
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
+import Refund from './pages/refundPolicies';
 function App() {
   return (
     <div >
@@ -57,6 +58,8 @@ function App() {
        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
        <Route path="/about-us" element={<AboutUsPage />} />
        <Route path="/terms-service" element={<TermsOfServicePage />} />
+       <Route path="/refund" element={<Refund />} />
+
        <Route path="/admin/home" element={<AdminPage />} />
        <Route path="/subscriber/home" element={<SubscriberPage />} />
        <Route path="/subscriber/form" element={<SubscriberForm />} />

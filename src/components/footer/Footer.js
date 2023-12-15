@@ -33,6 +33,11 @@ const Footer = () => {
                   <ShieldIcon ></ShieldIcon> Privacy Policy
                 </Link>
               </li>
+              <li className='mb-2'>
+                <Link to="/refund" className="text-white li-item">
+                  <ShieldIcon ></ShieldIcon> Refund Policy
+                </Link>
+              </li>
               <li>
                 <Link to="/about-us" className="text-white li-item">
                <InfoIcon></InfoIcon> About us

@@ -101,8 +101,8 @@ function SubscriberBoost() {
   function ccavenue(){
     axios.post('/try',{}).then((data)=>{
       setUrl(data.data.paymentUrl)
-      setEnc(data.data.key)
-      setAccessCode(data.data.key)
+      setEnc(data.data.paymentEnc)
+      setAccessCode(data.data.payment_key)
       pay();
     })
   }
@@ -170,9 +170,9 @@ function SubscriberBoost() {
             </div>
           </div>
         </div>
-        <form ref={form} id="nonseamless" method="post" name="redirect" action={'https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction'}>
+        <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
     <input  id="encRequest" name="encRequest" value={encRequest} />
-    <input  name="access_code" id="access_code" value={'AVPP37KL58AJ50PPJA'} />
+    <input  name="access_code" id="access_code" value={accessCode} />
   </form>
       </SubscriberLayout>
     </>
