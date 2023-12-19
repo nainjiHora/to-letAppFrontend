@@ -83,7 +83,7 @@ const Listing = (props) => {
   const [encRequest,setEnc]=useState("")
   function ccavenue(charge,id){
     
-    axios.post('/try',{email:user.email,name:user.name,amount:charge,plan:'form',id:id}).then((data)=>{
+    axios.post('/try',{email:user.email,name:user.name,amount:charge,plan:'subscriber/form',id:id}).then((data)=>{
       setUrl(data.data.paymentUrl)
       setEnc(data.data.paymentEnc)
       setAccessCode(data.data.payment_key)

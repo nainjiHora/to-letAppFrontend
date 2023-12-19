@@ -45,7 +45,7 @@ function Plans() {
   }
 
   function ccavenue(){
-    axios.post('/try',{email:userData.email,name:userData.name,amount:999,plan:'plans'}).then((data)=>{
+    axios.post('/try',{email:userData.email,name:userData.name,amount:999,plan:'subscriber/plans'}).then((data)=>{
       setUrl(data.data.paymentUrl)
       setEnc(data.data.paymentEnc)
       setAccessCode(data.data.payment_key)

@@ -122,7 +122,7 @@ handleFormSubmit(0)
     calculateCharges()
   },[])
   function ccavenue(){
-    axios.post('/try',{email:user.email,name:user.name,amount:charge,plan:'ads'}).then((data)=>{
+    axios.post('/try',{email:user.email,name:user.name,amount:charge,plan:'subscriber/ads'}).then((data)=>{
       setUrl(data.data.paymentUrl)
       setEnc(data.data.paymentEnc)
       setAccessCode(data.data.payment_key)
