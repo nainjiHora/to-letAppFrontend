@@ -70,6 +70,7 @@ function App() {
        <Route path="/subscriber/Boost/:order" element={<SubscriberBoost />} />
 
        <Route path="/subscriber/plans" element={<Plans />} />
+       <Route path="/subscriber/plans/:order" element={<Plans />} />
        <Route path="/admin/home" element={<AdminHomePage />} />
        <Route path="/admin/users" element={<AdminUsersPage />} />
        <Route path="/admin/listing" element={<AdminListingPage />} />

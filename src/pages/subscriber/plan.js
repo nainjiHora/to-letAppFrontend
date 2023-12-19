@@ -2,11 +2,20 @@ import axios from "axios";
 import SubscriberLayout from "../../components/layout/SubscriberLayout";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 function Plans() {
+  let params=useParams()
+
   let [auth, setAuth] = useState(JSON.parse(localStorage.getItem("auth")));
+  const [url,setUrl]=useState("")
+  const [accessCode,setAccessCode]=useState("")
+  const [encRequest,setEnc]=useState("")
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("auth")).user
+  );
   function choosePercent() {
     axios
       .post("/addPlan", { user_id: auth.user._id, plan: "percent" })
@@ -34,44 +43,44 @@ function Plans() {
       });
   }
 
+  function ccavenue(){
+    axios.post('/try',{email:userData.email,name:userData.name,amount:999,plan:'plans'}).then((data)=>{
+      setUrl(data.data.paymentUrl)
+      setEnc(data.data.paymentEnc)
+      setAccessCode(data.data.payment_key)
+      pay();
+    })
+  }
+  function pay(){
+    
+    setTimeout(() => {
+     
+      form.current && form.current.submit();
+    }, 500);
+   }
+
+   useEffect(()=>{
+    if(params.order){
+      getFixPlan()
+    }
+  },[])
+
   var getFixPlan = async () => {
     try {
       const amount = 999;
-      const {
-        data: { key },
-      } = await axios.get("/getkey");
-      const {
-        data: { order },
-      } = await axios.post("/checkout", {
-        amount,
-      });
-
-      const BookingData = {
-        razorpay_order_id: order.id,
-        razorpay_payment_id: order.id,
-        amount: order.amount,
-      };
       const planDetails = {
         name: "999",
         amount,
         planValidity: 30,
       };
 
-      const options = {
-        key,
-        amount: order.amount,
-        currency: "INR",
-        name: "Razorpay",
-        description: "RazorPay",
-        image: "",
-        order_id: order.id,
+      
 
-        handler: async (response) => {
-          try {
+        
+         
             const verifyUrl = "/addFixedPlan";
             const { data } = await axios.put(verifyUrl, {
-              response,
-              BookingData,
+              order_id:params.order,
               planDetails,
               auth,
             });
@@ -98,21 +107,7 @@ function Plans() {
                 confirmButtonText: "Cool",
               });
             }
-          } catch (error) {
-            // setisModeoOpen(false);
-
-            Swal.fire({
-              title: "Error!",
-              text: "Do you want to Try again !!",
-              icon: "error",
-              confirmButtonText: "Cool",
-            });
-          }
-        },
-      };
-
-      const razor = new window.Razorpay(options);
-      razor.open();
+     
     } catch (error) {
       console.error("Error saving listing:", error);
     }
@@ -168,7 +163,7 @@ function Plans() {
                 <li><i class="fa fa-times" aria-hidden="true"></i>                      Validity-Unlimited</li>
                 </ul>
             </div>
-            <a href="#" onClick={() => {
+            <a  onClick={() => {
                       choosePercent();
                     }}>Activate</a>
           </div>
@@ -191,8 +186,8 @@ function Plans() {
                 <li><i class="fa fa-times" aria-hidden="true"></i>Validity- Till 5 Listings</li>
                 </ul>
             </div>
-            <a href="#"  onClick={() => {
-                      getFixPlan();
+            <a   onClick={() => {
+                      ccavenue();
                     }}>Activate</a>
           </div>
         </div>
@@ -302,6 +297,10 @@ function Plans() {
             </div>
           </div> */}
         </div>
+        <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
+    <input type="hidden" id="encRequest" name="encRequest" value={encRequest} />
+    <input type="hidden" name="access_code" id="access_code" value={accessCode} />
+  </form>
       </SubscriberLayout>
     </>
   );
