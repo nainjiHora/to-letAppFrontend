@@ -72,7 +72,7 @@ function SubscriberBoost() {
   };
 
   function ccavenue(){
-    axios.post('/try',{}).then((data)=>{
+    axios.post('/try',{email:user.email,name:user.name,amount:100}).then((data)=>{
       setUrl(data.data.paymentUrl)
       setEnc(data.data.paymentEnc)
       setAccessCode(data.data.payment_key)
@@ -83,11 +83,9 @@ function SubscriberBoost() {
   function pay(){
     
    setTimeout(() => {
-    console.log(encRequest)
-    console.log(url)
-    console.log(accessCode)
+    
      form.current && form.current.submit();
-   }, 5000);
+   }, 500);
   }
 
   return (
