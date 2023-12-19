@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext,useRef } from "react";
 import axios from "axios";
 import Common from "../components/common";
 import { useParams, useNavigate, Link } from "react-router-dom";
@@ -28,13 +28,18 @@ import Swal from "sweetalert2";
 const ListingDetails = () => {
   const comman = new Common()
   const nav = useNavigate()
+  let form=useRef()
+  let params=useParams()
   const { listingId } = useParams();
   const [listingDetails, setListingDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [auth, setAuth] = useContext(AuthContext);
   const [editMode, setEditMode] = useState(false)
 
-
+  const [user,setUser]=useState(auth.user)
+  const [url,setUrl]=useState("")
+  const [accessCode,setAccessCode]=useState("")
+  const [encRequest,setEnc]=useState("")
 
   var buy=()=>{
     Swal.fire({
@@ -48,52 +53,48 @@ const ListingDetails = () => {
     }).then(function(isConfirm) {
       if (isConfirm.isConfirmed) {
         
-       buyViewPackage()
+       ccavenue()
        
       } 
     })
   }
+  function ccavenue(){
+    axios.post('/try',{email:user.email,name:user.name,amount:charge,plan:`ads/${listingId}`}).then((data)=>{
+      setUrl(data.data.paymentUrl)
+      setEnc(data.data.paymentEnc)
+      setAccessCode(data.data.payment_key)
+      pay();
+    })
+  }
+  function pay(){
+    
+    setTimeout(() => {
+     
+      form.current && form.current.submit();
+    }, 500);
+   }
+   useEffect(()=>{
+    if(params.order){
+      buyViewPackage()
+    }
+  },[])
 
   var buyViewPackage=async ()=>{
         
             
     try {
       const amount = 100;
-      const {
-        data: { key },
-      } = await axios.get("/getkey");
-      const {
-        data: { order },
-      } = await axios.post("/checkout", {
-        amount,
-      });
 
-      const BookingData = {
-        razorpay_order_id: order.id,
-        razorpay_payment_id: order.id,
-        amount: order.amount,
-      };
       const planDetails = {
         name: "viewer",
         amount,
         planValidity: 7,
       };
 
-      const options = {
-        key,
-        amount: order.amount,
-        currency: "INR",
-        name: "Razorpay",
-        description: "RazorPay",
-        image: "",
-        order_id: order.id,
-
-        handler: async (response) => {
-          try {
+     
             const verifyUrl = "/buyViewPackage";
             const { data } = await axios.put(verifyUrl, {
-              response,
-              BookingData,
+              order_id:params.order,
               planDetails,
               auth,
             
@@ -124,21 +125,8 @@ const ListingDetails = () => {
                 confirmButtonText: "Cool",
               });
             }
-          } catch (error) {
-            // setisModeoOpen(false);
-
-            Swal.fire({
-              title: "Error!",
-              text: "Do you want to Try again !!",
-              icon: "error",
-              confirmButtonText: "Cool",
-            });
-          }
-        },
-      };
-
-      const razor = new window.Razorpay(options);
-      razor.open();
+         
+        
     } catch (error) {
       console.error("Error saving listing:", error);
     }
@@ -414,6 +402,10 @@ function editListing(){
           </Card>
         </Grid>
       </Grid>
+      <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
+    <input type="hidden" id="encRequest" name="encRequest" value={encRequest} />
+    <input type="hidden" name="access_code" id="access_code" value={accessCode} />
+  </form>
     </>
   );
 };

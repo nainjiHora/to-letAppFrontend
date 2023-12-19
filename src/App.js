@@ -80,6 +80,8 @@ function App() {
        <Route path="/admin/payments" element={<AdminPayments />} />
        <Route path="/admin/enquiry" element={<AdminEnquiry />} />
        <Route path="/ads/:listingId" element={<ListingDetails />} />
+       <Route path="/ads/:listingId/:order" element={<ListingDetails />} />
+
        <Route path="/ads/location/:state" element={<LocationPageListing />} />
        <Route path="/ads/category/:category" element={<CategoryListingPage />} />
        <Route path="/app" element={<Map />} />
