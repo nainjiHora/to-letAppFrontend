@@ -63,8 +63,11 @@ function App() {
        <Route path="/admin/home" element={<AdminPage />} />
        <Route path="/subscriber/home" element={<SubscriberPage />} />
        <Route path="/subscriber/form" element={<SubscriberForm />} />
+       <Route path="/subscriber/form/:order" element={<SubscriberForm />} />
+
        <Route path="/subscriber/payments" element={<SubscriberPayments />} />
        <Route path="/subscriber/ads" element={<SubsrcriberListings />} />
+       <Route path="/subscriber/ads/:order" element={<SubsrcriberListings />} />
        <Route path="/subscriber/dashboard" element={<SubscriberProfile />} />
        <Route path="/subscriber/Boost" element={<SubscriberBoost />} />
        <Route path="/subscriber/Boost/:order" element={<SubscriberBoost />} />

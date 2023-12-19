@@ -1,8 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect,useRef } from "react";
 import FileUpload from "../upload/FileUpload";
 import { AuthContext } from "../../context/auth";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
+
 import {
   Box,
   Button,
@@ -44,6 +46,8 @@ const buttonStyle = {
 };
 
 const Listing = (props) => {
+  let form=useRef()
+  const params=useParams()
   const navigate = useNavigate();
   const [auth, setAuth] = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -73,7 +77,26 @@ const Listing = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [chargedPrice, setChargedPrice] = useState();
   const [isTrialOver, setisTrialOver] = useState(true);
-
+  const [user,setUser]=useState(auth.user)
+  const [url,setUrl]=useState("")
+  const [accessCode,setAccessCode]=useState("")
+  const [encRequest,setEnc]=useState("")
+  function ccavenue(charge,id){
+    
+    axios.post('/try',{email:user.email,name:user.name,amount:charge,plan:'form',id:id}).then((data)=>{
+      setUrl(data.data.paymentUrl)
+      setEnc(data.data.paymentEnc)
+      setAccessCode(data.data.payment_key)
+      pay();
+    })
+  }
+  function pay(){
+    
+    setTimeout(() => {
+     
+      form.current && form.current.submit();
+    }, 500);
+   }
   const [locationState, setLocationState] = useState({
     address: "",
     city: "",
@@ -178,11 +201,26 @@ const Listing = (props) => {
       console.error("Error saving listing:", error);
     }
   };
+  useEffect(async()=>{
+    if(params.order){
+      const response = await axios.post("checkPayment", {order_id:params.order})
+      if(response.code){
+        Swal.fire({
+          icon: "success",
+          title: `Congratulation!!`,
+          text: "Property Created Successfully!",
+          confirmButtonText: "cool",
+        }).then(() => {
+          navigate("/subscriber/ads");
+        });
+      }
+    }
+  },[])
 
-  const handleWithoutChargesSubmit = async (e) => {
+  const handleWithoutChargesSubmit = async (e,charge) => {
     // e.preventDefault();
     try {
-      console.log("poiuytr")
+      
       const response = await axios.post("/listing/create", {
         user: data.user._id,
         title: title,
@@ -201,17 +239,22 @@ const Listing = (props) => {
         category: category,
         locationState: locationState,
         otherCategory: otherCategory,
+        is_booked:e,
+        
       });
-console.log(response)
-     if(response){
-       Swal.fire({
+
+     if(response ){
+      if(!e){ Swal.fire({
         icon: "success",
         title: `Congratulation!!`,
         text: "Property Created Successfully!",
         confirmButtonText: "cool",
       }).then(() => {
         navigate("/subscriber/ads");
-      });}
+      });}else{
+        ccavenue(charge,response._id)
+      }
+    }
       else{
         Swal.fire({
           icon: "error",
@@ -625,6 +668,10 @@ console.log(response)
           setChargedPrice={setChargedPrice}
         />
       )}
+      <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
+    <input type="hidden" id="encRequest" name="encRequest" value={encRequest} />
+    <input type="hidden" name="access_code" id="access_code" value={accessCode} />
+  </form>
     </Container>
   );
 };

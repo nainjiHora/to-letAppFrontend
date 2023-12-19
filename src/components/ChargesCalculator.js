@@ -6,7 +6,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+import { useEffect,useRef } from "react";
 const buttonStyle = {
   backgroundColor: red[500],
   color: "#FFFFFF",
@@ -21,9 +23,15 @@ const ChargesCalculator = ({
   days,
 }) => {
 let nav=useNavigate()
+let form=useRef()
+let params=useParams()
+
   const [charge,setCharge]=useState(0)
   const [auth,setAuth]=useState(JSON.parse(localStorage.getItem("auth")))
   const [user,setUser]=useState(auth.user)
+  const [url,setUrl]=useState("")
+  const [accessCode,setAccessCode]=useState("")
+  const [encRequest,setEnc]=useState("")
 
 
 
@@ -60,40 +68,17 @@ let nav=useNavigate()
     if(charge>0){
       try {
         const amount = charge;
-        const {
-          data: { key },
-        } = await axios.get("/getkey");
-        const {
-          data: { order },
-        } = await axios.post("/checkout", {
-          amount,
-        });
-  
-        const BookingData = {
-          razorpay_order_id: order.id,
-          razorpay_payment_id: order.id,
-          amount: order.amount,
-        };
         const planDetails = {
           name: "listing",
           amount,
           planValidity: 14,
         };
  
-        const options = {
-          key,
-          amount: order.amount,
-          currency: "INR",
-          name: "Razorpay",
-          description: "RazorPay",
-          image: "",
-          order_id: order.id,
-  
-          handler: async (response) => {
-            console.log(response)
+       
+          
             try {
   
-              handleFormSubmit()
+             handleFormSubmit(1,charge)
             } catch (error) {
               // setisModeoOpen(false);
   
@@ -104,19 +89,18 @@ let nav=useNavigate()
                 confirmButtonText: "Cool",
               });
             }
-          },
-        };
+          
+        
   
-        const razor = new window.Razorpay(options);
-        razor.open();
+       
       } catch (error) {
         console.error("Error saving listing:", error);
       }
     }else{
       if(user.listing_count>0){
-        console.log(9)
+        
         // return
-handleFormSubmit()
+handleFormSubmit(0)
       }
       else{
         Swal.fire({
@@ -137,6 +121,23 @@ handleFormSubmit()
   useEffect(()=>{
     calculateCharges()
   },[])
+  function ccavenue(){
+    axios.post('/try',{email:user.email,name:user.name,amount:charge,plan:'ads'}).then((data)=>{
+      setUrl(data.data.paymentUrl)
+      setEnc(data.data.paymentEnc)
+      setAccessCode(data.data.payment_key)
+      pay();
+    })
+  }
+  function pay(){
+    
+    setTimeout(() => {
+     
+      form.current && form.current.submit();
+    }, 500);
+   }
+
+   
 
   return (
     <Container maxWidth="lg">
@@ -148,7 +149,7 @@ handleFormSubmit()
           <Grid item xs={12} md={6}>
             <Box>
               <p style={{ fontWeight: "bold" }}>
-              {console.log(auth)}
+              
                {user.plan=="percent"?(<h5>As per Plan you have to pay 5% of the listing price</h5>):(<h5>You can List {user.listing_count-1} Properties After Listing this Property for Free As per your Plan.</h5>)}
               </p>
               {/* <p style={{ fontWeight: "bold" }}>Maximum Charge: 500</p> */}
@@ -194,6 +195,10 @@ handleFormSubmit()
           </Grid>
         </Grid>
       </form>
+    <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
+    <input type="hidden" id="encRequest" name="encRequest" value={encRequest} />
+    <input type="hidden" name="access_code" id="access_code" value={accessCode} />
+  </form>
     </Container>
   );
 };
