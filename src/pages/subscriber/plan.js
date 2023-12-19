@@ -73,10 +73,6 @@ function Plans() {
         amount,
         planValidity: 30,
       };
-
-      
-
-        
          
             const verifyUrl = "/addFixedPlan";
             const { data } = await axios.put(verifyUrl, {
