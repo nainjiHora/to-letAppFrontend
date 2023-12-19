@@ -1,10 +1,12 @@
-import { useState,useRef } from "react";
+import { useState,useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import SubscriberLayout from "../../components/layout/SubscriberLayout";
 import axios from "axios";
 import Swal from "sweetalert2";
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 function SubscriberBoost() {
   let form=useRef()
+  let params=useParams()
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("auth")).user
   );
@@ -13,46 +15,28 @@ function SubscriberBoost() {
   const [accessCode,setAccessCode]=useState("")
   const [encRequest,setEnc]=useState("")
 
+  useEffect(()=>{
+    if(params.order){
+      buyBoost()
+    }
+  },[])
   var buyBoost = async () => {
     try {
       const amount = 100;
-      const {
-        data: { key },
-      } = await axios.get("/getkey");
-      const {
-        data: { order },
-      } = await axios.post("/checkout", {
-        amount,
-      });
-
-      const BookingData = {
-        razorpay_order_id: order.id,
-        razorpay_payment_id: order.id,
-        amount: order.amount,
-      };
       const planDetails = {
         name: "Boost",
-        amount,
+        amount:100,
         planValidity: 30,
       };
 
-      const options = {
-        key,
-        amount: order.amount,
-        currency: "INR",
-        name: "Razorpay",
-        description: "RazorPay",
-        image: "",
-        order_id: order.id,
+      
 
-        handler: async (response) => {
-          try {
+        
             const verifyUrl = "/boostAdd";
             const { data } = await axios.put(verifyUrl, {
-              response,
-              BookingData,
               planDetails,
               auth,
+              order_id:params.order
             });
 
             if (data.status) {
@@ -78,21 +62,10 @@ function SubscriberBoost() {
                 confirmButtonText: "Cool",
               });
             }
-          } catch (error) {
-            // setisModeoOpen(false);
+          
+        
+      
 
-            Swal.fire({
-              title: "Error!",
-              text: "Do you want to Try again !!",
-              icon: "error",
-              confirmButtonText: "Cool",
-            });
-          }
-        },
-      };
-
-      const razor = new window.Razorpay(options);
-      razor.open();
     } catch (error) {
       console.error("Error saving listing:", error);
     }
@@ -171,8 +144,8 @@ function SubscriberBoost() {
           </div>
         </div>
         <form ref={form} id="nonseamless" method="post" name="redirect" action={url}>
-    <input  id="encRequest" name="encRequest" value={encRequest} />
-    <input  name="access_code" id="access_code" value={accessCode} />
+    <input type="hidden" id="encRequest" name="encRequest" value={encRequest} />
+    <input type="hidden" name="access_code" id="access_code" value={accessCode} />
   </form>
       </SubscriberLayout>
     </>
