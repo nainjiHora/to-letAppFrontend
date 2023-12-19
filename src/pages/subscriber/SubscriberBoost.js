@@ -72,7 +72,7 @@ function SubscriberBoost() {
   };
 
   function ccavenue(){
-    axios.post('/try',{email:user.email,name:user.name,amount:100}).then((data)=>{
+    axios.post('/try',{email:userData.email,name:userData.name,amount:100}).then((data)=>{
       setUrl(data.data.paymentUrl)
       setEnc(data.data.paymentEnc)
       setAccessCode(data.data.payment_key)
