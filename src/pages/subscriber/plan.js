@@ -1,12 +1,13 @@
 import axios from "axios";
 import SubscriberLayout from "../../components/layout/SubscriberLayout";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useState,useEffect,useRef } from "react";
 import { useParams } from "react-router-dom";
 
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 function Plans() {
+  let form=useRef()
   let params=useParams()
 
   let [auth, setAuth] = useState(JSON.parse(localStorage.getItem("auth")));
