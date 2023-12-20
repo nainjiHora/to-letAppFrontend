@@ -44,7 +44,7 @@ const ListingDetails = () => {
   var buy=()=>{
     Swal.fire({
       title:"Unlimited Package",
-      text: "With This Package, you can View the contact Info of unlimited properties for 7 Days ",
+      text: "With This Package, you can View the contact Info of unlimited properties for 7 Days in just Rs 100",
       icon: "info",
       confirmButtonText: 'Go For it',
       cancelButtonText: "No, cancel it!",

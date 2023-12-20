@@ -42,7 +42,7 @@ function App() {
     <div >
     
          
-      <FloatingWhatsApp avatar='/images/logo.png' allowClickAway="true" phoneNumber="8209774092" accountName="To-let Services" accountPicture="none" />
+      <FloatingWhatsApp avatar='/images/logo.png' allowClickAway="true" phoneNumber="918209774092" accountName="To-let Services" accountPicture="none" />
     <Router>
    
    <AuthProvider>
