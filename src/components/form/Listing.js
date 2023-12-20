@@ -640,7 +640,7 @@ const Listing = (props) => {
           {!isTrialOver && (
             <Button
               type="submit"
-              onClick={handleWithoutChargesSubmit}
+              onClick={handleWithoutChargesSubmit(0)}
               variant="contained"
               style={buttonStyle}
             >
