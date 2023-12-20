@@ -43,8 +43,7 @@ const AuthProvider = ({ children }) => {
           user: null,
           token: "",
         });
-        console.log("poiuytretyuiopoiuytddddddddddddddddd")
-        // localStorage.removeItem("auth");
+              localStorage.removeItem("auth");
         history.push("/signin");
         console.log("LOGOUT FORCECULLY ======> ");
       }
