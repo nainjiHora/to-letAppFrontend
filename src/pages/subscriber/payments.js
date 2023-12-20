@@ -31,9 +31,7 @@ const Payments = () => {
   };
 
   const handleSearch = () => {
-    const filteredPayments = payments.filter((payment) =>
-      payment.razorpay_payment_id.includes(searchQuery)
-    );
+    const filteredPayments = payments.filter((payment) =>{return true});
     setSearchResults(filteredPayments);
   };
 
@@ -65,7 +63,6 @@ const Payments = () => {
               <th>Date</th>
               <th>Time</th>
               <th>Amount</th>
-              <th>Payment ID</th>
               <th>Property</th>
               <th>Price</th>
               {/* Add more table headers as needed */}
@@ -78,7 +75,6 @@ const Payments = () => {
                 <td>{payment.date}</td>
                 <td>{payment.time}</td>
                 <td>{payment.amount}</td>
-                <td>{payment.razorpay_payment_id}</td>
                 <td>{payment.listingId && payment.listingId.title}</td>
                 <td>{payment.listingId && payment.listingId.price}</td>
                 {/* Add more table cells as needed */}
