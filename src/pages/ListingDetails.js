@@ -36,7 +36,7 @@ const ListingDetails = () => {
   const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
   const [editMode, setEditMode] = useState(false)
 
-  const [user,setUser]=useState(auth.user)
+  const [user,setUser]=useState(auth!=null && auth?auth.user:{})
   const [url,setUrl]=useState("")
   const [accessCode,setAccessCode]=useState("")
   const [encRequest,setEnc]=useState("")
@@ -132,7 +132,7 @@ const ListingDetails = () => {
     }
   };
   useEffect(() => {
-    if (auth.user !== null) {
+    if (auth && auth.user !== null) {
       const fetchListingDetails = async () => {
         try {
           const response = await axios.get(`/listing/single/${listingId}`); // Replace with your API endpoint
@@ -318,7 +318,7 @@ function editListing(){
 
               <hr />
               <h3 className="mb-3"> <u>Contact Details</u> </h3>
-              {!auth.user ? (
+              { !auth || !auth.user ? (
                 <div>
                   <p>
                     {" "}
