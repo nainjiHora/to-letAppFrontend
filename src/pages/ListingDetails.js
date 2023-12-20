@@ -33,7 +33,7 @@ const ListingDetails = () => {
   const { listingId } = useParams();
   const [listingDetails, setListingDetails] = useState({});
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useContext(AuthContext);
+  const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
   const [editMode, setEditMode] = useState(false)
 
   const [user,setUser]=useState(auth.user)
@@ -93,12 +93,12 @@ const ListingDetails = () => {
 
      
             const verifyUrl = "/buyViewPackage";
-            const { data } = await axios.put(verifyUrl, {
+            const { data } = await axios.post(verifyUrl, {
               order_id:params.order,
               planDetails,
               auth,
             
-            });
+            },{headers:{ 'Authorization': 'Bearer '+auth.token }});
 
             if (data.status) {
             //   setisModeoOpen(false);

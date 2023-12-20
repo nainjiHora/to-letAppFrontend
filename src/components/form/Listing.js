@@ -241,7 +241,7 @@ const Listing = (props) => {
         otherCategory: otherCategory,
         is_booked:e,
         
-      });
+      },{headers:{ 'Authorization': 'Bearer '+auth.token }});
 
      if(response ){
       if(!e){ Swal.fire({

@@ -80,7 +80,7 @@ function Plans() {
               order_id:params.order,
               planDetails,
               auth,
-            });
+            },{headers:{ 'Authorization': 'Bearer '+auth.token }});
 
             if (data.status) {
               let temp = { ...auth };

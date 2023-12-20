@@ -37,7 +37,7 @@ function SubscriberBoost() {
               planDetails,
               auth,
               order_id:params.order
-            });
+            },{headers:{ 'Authorization': 'Bearer '+auth.token }});
 
             if (data.status) {
               //   setisModeoOpen(false);
