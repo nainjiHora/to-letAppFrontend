@@ -32,24 +32,24 @@ const AuthProvider = ({ children }) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${auth.token}`;
   }
 
-  // axios.interceptors.response.use(
-  //   function (response) {
-  //     return response;
-  //   },
-  //   function (error) {
-  //     let res = error.response;
-  //     if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
-  //       setAuth({
-  //         user: null,
-  //         token: "",
-  //       });
-  //       console.log("poiuytretyuiopoiuytddddddddddddddddd")
-  //       // localStorage.removeItem("auth");
-  //       history.push("/signin");
-  //       console.log("LOGOUT FORCECULLY ======> ");
-  //     }
-  //   }
-  // );
+  axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
+      let res = error.response;
+      if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
+        setAuth({
+          user: null,
+          token: "",
+        });
+        console.log("poiuytretyuiopoiuytddddddddddddddddd")
+        // localStorage.removeItem("auth");
+        history.push("/signin");
+        console.log("LOGOUT FORCECULLY ======> ");
+      }
+    }
+  );
 
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
