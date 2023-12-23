@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -16,6 +17,7 @@
   font-size: 20px;
   
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -388,13 +390,13 @@ width: 100px !important;
   z-index: 2;
 }
 .plan-option ul {
-  margin: 0;
-  padding: 0;
+  margin: 2;
+  padding: 2;
 }
 .plan-option ul li {
-  margin: 0 0 10px;
-  padding: 0;
-  list-style: none;
+  margin: 0;
+  padding: 2;
+  list-style: disc;
   color: #fff;
   font-size: 16px;
 }
@@ -406,7 +408,7 @@ width: 100px !important;
   color: #262ff2;
   width: 150px;
   height: 40px;
-  text-align: center;
+  /* text-align: center; */
   margin: 20px auto 0;
   line-height: 40px;
   border-radius: 40px;

@@ -122,68 +122,73 @@ function Plans() {
     <div class="container">
       <div class="row">
         <div class="col-sm-4  col-md plan-card-box">
-          <div class="plan-card card_red text-center">
+          <div class="plan-card card_red ">
             <div class="title">
               <i class="fa fa-paper-plane" aria-hidden="true"></i>
-              <h2>Free Trial</h2>
+              <h2 class="text-center">Free Trial</h2>
             </div>
-            <div class="price">
+            <div class="price text-center">
               <h5>Free Plan</h5>
             </div>
             <div class="plan-option">
               <ul>
-                <li><i class="fa fa-check" aria-hidden="true"></i>In this You can Post Only 1 Ad for 7 days </li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> After that you
-                      need to upgrade your plan</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i>No Boost Provided</li>
-                <li><i class="fa fa-times" aria-hidden="true"></i>Validity-7 Days</li>
+                <li><i class="fa fa-check" aria-hidden="true">You are limited to posting one advertisement for a period of seven days.
+                </i> </li>
+                <li><i class="fa fa-check" aria-hidden="true"> After then, your plan needs to be upgraded.
+                </i></li>
+                <li><i class="fa fa-check" aria-hidden="true">No Boost Offered</i></li>
+                <li><i class="fa fa-times" aria-hidden="true">Validity-7 Days</i></li>
                 </ul>
             </div>
-            <a href="#" disabled >Expired</a>
+            <a class="text-center" href="#" disabled >Expired</a>
           </div>
         </div>
         <div class="col-sm-4 col-md plan-card-box">
-          <div class="plan-card card_violet text-center">
+          <div class="plan-card card_violet">
             <div class="title">
               <i class="fa fa-plane" aria-hidden="true"></i>
-              <h2>Premium</h2>
+              <h2 class="text-center">Premium</h2>
             </div>
-            <div class="price">
+            <div class="price text-center">
               <h5>5% Plan</h5>
             </div>
             <div class="plan-option">
               <ul>
-                <li><i class="fa fa-check" aria-hidden="true"></i>In this You can Post Ads on a costing of 5% of the listing
-                      Price</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i>3Each Property will be listed for 14 days.</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i>One Boost Provided</li>
-                <li><i class="fa fa-times" aria-hidden="true"></i>                      Validity-Unlimited</li>
+                <li><i class="fa fa-check" aria-hidden="true">You can post advertisements here for a fee of 5% of the listing price.
+                </i></li>
+                <li><i class="fa fa-check" aria-hidden="true">Every property will have a 14-day listing period.
+                </i></li>
+                <li><i class="fa fa-check" aria-hidden="true">A Single Boost Is Offered</i></li>
+                <li><i class="fa fa-times" aria-hidden="true">Validity-Unlimited</i></li>
                 </ul>
             </div>
-            <a  onClick={() => {
+            <a class="text-center" onClick={() => {
                       choosePercent();
                     }}>Activate</a>
           </div>
         </div>
         <div class="col-sm-4 col-md plan-card-box">
-          <div class="plan-card card_three text-center">
+          <div class="plan-card card_three ">
             <div class="title">
               <i class="fa fa-rocket" aria-hidden="true"></i>
-              <h2>Standard</h2>
+              <h2 class="text-center">Standard</h2>
             </div>
-            <div class="price">
+            <div class="price text-center">
               <h5>999 Plan</h5>
             </div>
             <div class="plan-option">
               <ul>
-                <li><i class="fa fa-check" aria-hidden="true"></i>In this You can Post 5 Ads on a total payment of 999.</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i>Each
-                      Property will be listed for 14 days.</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i>One Boost Provided</li>
-                <li><i class="fa fa-times" aria-hidden="true"></i>Validity- Till 5 Listings</li>
+                <li><i class="fa fa-check" aria-hidden="true">You can post five advertisements here for a total of 999 Rs.
+                </i> </li>
+                <li><i class="fa fa-check" aria-hidden="true">Every property will have a 14-day listing period.
+                
+                </i></li>
+                <li><i class="fa fa-check" aria-hidden="true">One Boost offered</i></li>
+                 <li>
+                  <i class="fa fa-times" aria-hidden="true">Validity- Till 5 Listings</i></li>
                 </ul>
             </div>
-            <a   onClick={() => {
+            <a class="text-center"  onClick={() => {
                       ccavenue();
                     }}>Activate</a>
           </div>
