@@ -241,7 +241,7 @@ function editListing(){
             <Carousel showThumbs={true} showArrows={true}>
               {listingDetails.images.map((url, index) => (
                 <div key={index}>
-                  <img src={url} alt={`Image ${index}`} />
+                  <img src={url} alt={`Image ${index}`}  />
                 </div>
               ))}
             </Carousel>
@@ -337,7 +337,7 @@ function editListing(){
                       <span style={{ fontWeight: "bold", fontSize: "18px" }}>Contact:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid?"":"blurme"}>{listingDetails.phone}</span>{!auth.user.isPaid&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid || auth.user.view_count==0 ?"":"blurme"}>{listingDetails.phone}</span>{(!auth.user.isPaid&& auth.user.view_count!=0)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
                     </div>
                   </div>
                   <div className="row m-2">
@@ -345,7 +345,7 @@ function editListing(){
                       <span style={{ fontWeight: "bold", fontSize: "18px" }}>WhatsApp:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid?"":"blurme"}>{listingDetails.whatsappNumber}</span>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid|| auth.user.view_count==0?"":"blurme"}>{listingDetails.whatsappNumber}</span>}
                     </div>
                   </div>
                 </div>
@@ -364,7 +364,7 @@ function editListing(){
                   <span style={{ fontWeight: "bold", fontSize: "18x" }}>   Address:</span>
                 </div>
                 <div className="col-6">
-                {editMode?<input type="text" className="form-control" value={listingDetails.address} onInput={(e) => { setListingDetails({ ...listingDetails, address: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }}>{listingDetails.address}</span>}                </div>
+                {editMode?<input type="text" className="form-control" value={listingDetails.address} onInput={(e) => { setListingDetails({ ...listingDetails, address: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid || auth.user.view_count==0 ?"":"blurme"}>{listingDetails.address}</span>}                </div>
               </div>
 
 
@@ -386,18 +386,19 @@ function editListing(){
       <Grid container spacing={0}>
         <Grid item xs={12} md={12}>
           <Card>
-            <Card.Body>
+            <Card.Body><>
               <h4 className="mb-3">Locate On Map</h4>
-
+              {!auth.user.isPaid&& auth.user.view_count!=0&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to Locate</button>}
               <hr />
-              <div className="App" style={{ margin: "0px", marginTop: "10px" }}>
+             {(auth.user.isPaid || auth.user.view_count==0)  && <div className="App" style={{ margin: "0px", marginTop: "10px" }}>
                 <MyMapComponent
                   googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPI}&libraries=places`}
                   loadingElement={<div style={{ height: `100%` }} />}
                   containerElement={<div style={{ height: `800px` }} />}
                   mapElement={<div style={{ height: `100%` }} />}
                 />
-              </div>
+              </div>}
+              </>
             </Card.Body>
           </Card>
         </Grid>

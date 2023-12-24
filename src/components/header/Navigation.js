@@ -261,7 +261,7 @@ const Navigation = () => {
 
   const signOut = () => {
     // setDrawerOpen(!drawerOpen);
-    console.log("poiuytretyuiopoiuyt")
+    
     localStorage.removeItem('auth');
     toast.success("Signout  Success");
 

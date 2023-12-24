@@ -4,10 +4,18 @@ import { Link } from "react-router-dom";
 import Common from "../common";
 import { useState } from "react";
 import "./main.css"
+import axios from "axios";
 
 
 function ListingCard({ listing }) {
 
+  function updateViewCount(){
+    axios.post("/updateViewCount",{email:JSON.parse(localStorage.getItem('auth')).user.email}).then(()=>{
+      let a=JSON.parse(localStorage.getItem('auth'))
+      a.user.view_count=a.user.view_count?a.user.view_count+1:1
+      localStorage.setItem("auth",JSON.stringify(a))
+    })
+  }
   const [onHover,setOnHover]=useState(false)
   var common=new Common()
   return (
@@ -39,7 +47,7 @@ function ListingCard({ listing }) {
               <div className="d-flex justify-content-between"><h4 className="card-title">{common.capitalize(listing.state)}</h4><h5>{common.capitalize(listing.category)}</h5></div>
 
               {<Link to={`/ads/${listing._id}`} style={{ textDecoration: "none", color: "inherit" }}>
-              <button className="btn btn-danger w-100" style={{backgroundColor:onHover?"":"",border:onHover?"":"none"}}>More Details</button>
+              <button className="btn btn-danger w-100" style={{backgroundColor:onHover?"":"",border:onHover?"":"none"}} onClick={()=>{updateViewCount()}}>More Details</button>
               </Link>}
 
             </div>

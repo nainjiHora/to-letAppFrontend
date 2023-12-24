@@ -491,6 +491,8 @@ const Listing = (props) => {
                     <MenuItem value="year">Year (per year)</MenuItem>
                     <MenuItem value="month">Month (per month)</MenuItem>
                     <MenuItem value="week">Week (per week)</MenuItem>
+                    <MenuItem value="">Day (per Day)</MenuItem>
+
                   </Select>
                 </FormControl>
               </Box>
