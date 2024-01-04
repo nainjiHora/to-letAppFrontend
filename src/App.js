@@ -37,7 +37,6 @@ import Plans from './pages/subscriber/plan';
 import ReactWhatsapp from 'react-whatsapp';
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import Refund from './pages/refundPolicies';
-import NewHome from './newComponents/home';
 function App() {
   return (
     <div >
@@ -86,7 +85,6 @@ function App() {
        <Route path="/ads/location/:state" element={<LocationPageListing />} />
        <Route path="/ads/category/:category" element={<CategoryListingPage />} />
        <Route path="/app" element={<Map />} />
-       <Route path='/nainji' element={<NewHome/>}/>
      </Routes>
      </AuthProvider>   
      <Footer />
