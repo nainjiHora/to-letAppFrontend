@@ -388,7 +388,7 @@ function editListing(){
           <Card>
             <Card.Body><>
               <h4 className="mb-3">Locate On Map</h4>
-              {!auth.user.isPaid&& auth.user.view_count!=0&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to Locate</button>}
+              {(auth &&!auth.user.isPaid&& auth.user.view_count!=0)||(!auth)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to Locate</button>}
               <hr />
              {auth&&(auth.user.isPaid || auth.user.view_count==0)  && <div className="App" style={{ margin: "0px", marginTop: "10px" }}>
                 <MyMapComponent
