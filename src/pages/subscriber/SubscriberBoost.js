@@ -17,6 +17,7 @@ function SubscriberBoost() {
 
   useEffect(()=>{
     if(params.order){
+      console.log("SSS")
       buyBoost()
     }
   },[])
@@ -28,9 +29,6 @@ function SubscriberBoost() {
         amount:100,
         planValidity: 30,
       };
-
-      
-
         
             const verifyUrl = "/boostAdd";
             const { data } = await axios.put(verifyUrl, {
@@ -40,7 +38,7 @@ function SubscriberBoost() {
             },{headers:{ 'Authorization': 'Bearer '+auth.token }});
 
             if (data.status) {
-              //   setisModeoOpen(false);
+              
 
               let temp = { ...auth };
               temp.user.boost_available = temp.user.boost_available + 2;

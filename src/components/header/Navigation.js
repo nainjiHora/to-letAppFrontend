@@ -373,6 +373,9 @@ const Navigation = () => {
   ); 
   const appBarStyle = {
     backgroundColor: '#b30707',
+    "position":"fixed",
+    "zIndex":3,
+    "top":0
      // Background color set to red
   };
 

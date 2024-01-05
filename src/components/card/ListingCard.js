@@ -10,11 +10,13 @@ import axios from "axios";
 function ListingCard({ listing }) {
 
   function updateViewCount(){
+    if(localStorage.getItem('auth')){
     axios.post("/updateViewCount",{email:JSON.parse(localStorage.getItem('auth')).user.email}).then(()=>{
       let a=JSON.parse(localStorage.getItem('auth'))
       a.user.view_count=a.user.view_count?a.user.view_count+1:1
       localStorage.setItem("auth",JSON.stringify(a))
     })
+  }
   }
   const [onHover,setOnHover]=useState(false)
   var common=new Common()

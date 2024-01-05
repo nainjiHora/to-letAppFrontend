@@ -201,8 +201,8 @@ const Listing = (props) => {
       console.error("Error saving listing:", error);
     }
   };
-  useEffect(async()=>{
-    if(params.order){
+  useEffect(()=>{
+   async function call(){ if(params.order){
       const response = await axios.post("checkPayment", {order_id:params.order})
       if(response.code){
         Swal.fire({
@@ -214,7 +214,8 @@ const Listing = (props) => {
           navigate("/subscriber/ads");
         });
       }
-    }
+    }}
+    call()
   },[])
 
   const handleWithoutChargesSubmit = async (e,charge) => {
@@ -381,7 +382,7 @@ const Listing = (props) => {
     }
   }, [auth.user]);
 
-  return (
+  return (<>
     <Container maxWidth="lg">
       {currentPage === 1 && (
         <form onSubmit={handleWithoutChargesSubmit} style={formContainerStyle}>
@@ -675,6 +676,7 @@ const Listing = (props) => {
     <input type="hidden" name="access_code" id="access_code" value={accessCode} />
   </form>
     </Container>
+    </>
   );
 };
 

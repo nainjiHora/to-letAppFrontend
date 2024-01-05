@@ -323,11 +323,11 @@ function editListing(){
                   <p>
                     {" "}
                     Contact:{" "}
-                   <Link to="/signin" > <strong className="">Login to Continue</strong></Link>
+                  <button className="btn btn-primary" onClick={()=>{nav("/signin")}}>   <strong className="">Login to Continue</strong></button>
                   </p>
                   <p>
                     <span style={{ fontSize: "18px" }}> WhatsApp:</span>{" "}
-                    <Link to="/signin"><strong className="">Login to Continue</strong></Link>
+                    <button className="btn btn-primary" onClick={()=>{nav("/signin")}}> <strong className="">Login to Continue</strong></button>
                   </p>
                 </div>
               ) : (
@@ -388,7 +388,8 @@ function editListing(){
           <Card>
             <Card.Body><>
               <h4 className="mb-3">Locate On Map</h4>
-              {(auth &&!auth.user.isPaid&& auth.user.view_count!=0)||(!auth)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to Locate</button>}
+              {(auth &&!auth.user.isPaid&& auth.user.view_count!=0)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to Locate</button>}
+              {!auth &&<button className="btn btn-primary" onClick={()=>{nav("/signIn")}}>Login to Continue</button>}
               <hr />
              {auth&&(auth.user.isPaid || auth.user.view_count==0)  && <div className="App" style={{ margin: "0px", marginTop: "10px" }}>
                 <MyMapComponent

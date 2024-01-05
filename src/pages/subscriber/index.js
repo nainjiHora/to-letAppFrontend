@@ -61,7 +61,7 @@ const UserProfile = () => {
   });
 
   useEffect(() => {
-    if (auth.user && auth.user._id) fetchUser();
+    if (auth.user && auth.user._id) {console.log("SSS");fetchUser();}
   }, [auth.user, editing]);
 
   const fetchUser = async () => {
