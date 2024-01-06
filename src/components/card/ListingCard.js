@@ -24,7 +24,7 @@ function ListingCard({ listing }) {
     <div onMouseEnter={()=>{setOnHover(true)}} onMouseLeave={()=>{setOnHover(false)}} className="list-card">
       <div className="card-deck p-2">
         <div className="card p-2" >
-          <div>
+        <Link to={`/ads/${listing._id}`} style={{ textDecoration: "none", color: "inherit" }}><div>
             <Carousel>
               {listing.images.map(
                 (url, index) =>
@@ -42,7 +42,7 @@ function ListingCard({ listing }) {
                   )
               )}
             </Carousel>
-          </div>
+          </div></Link>
          
             <div className="card-body bginc">
               <div className="d-flex justify-content-between"><h4 className="card-title">{common.capitalize(listing.title)}</h4><h5>{listing.price}</h5></div>
