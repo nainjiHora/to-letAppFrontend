@@ -48,7 +48,8 @@ function App() {
    <AuthProvider>
     <Toaster/>
      <Navigation/>
-     <Routes>
+    <div style={{"marginTop":"5rem"}}>
+     <Routes >
      <Route path="/map" element={<App />} />
        <Route path="/" element={<Main />} />
        <Route path="/home" element={<Home />} />
@@ -86,6 +87,7 @@ function App() {
        <Route path="/ads/category/:category" element={<CategoryListingPage />} />
        <Route path="/app" element={<Map />} />
      </Routes>
+     </div>
      </AuthProvider>   
      <Footer />
    </Router>
