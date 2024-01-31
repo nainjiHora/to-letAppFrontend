@@ -337,7 +337,7 @@ function editListing(){
                       <span style={{ fontWeight: "bold", fontSize: "18px" }}>Contact:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth&&(auth.user.isPaid || auth.user.view_count==0 )?"":"blurme"}>{listingDetails.phone}</span>{(!auth.user.isPaid&& auth.user.view_count!=0)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth&&(auth.user.isPaid || auth.user.view_count>=4 )?"":"blurme"}>{listingDetails.phone}</span>{(!auth.user.isPaid&& auth.user.view_count!=0)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
                     </div>
                   </div>
                   <div className="row m-2">
@@ -345,7 +345,7 @@ function editListing(){
                       <span style={{ fontWeight: "bold", fontSize: "18px" }}>WhatsApp:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid|| auth.user.view_count==0?"":"blurme"}>{listingDetails.whatsappNumber}</span>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.whatsappNumber} onInput={(e) => { setListingDetails({ ...listingDetails, whatsappNumber: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth.user.isPaid|| auth.user.view_count<=4?"":"blurme"}>{listingDetails.whatsappNumber}</span>}
                     </div>
                   </div>
                 </div>
@@ -364,7 +364,7 @@ function editListing(){
                   <span style={{ fontWeight: "bold", fontSize: "18x" }}>   Address:</span>
                 </div>
                 <div className="col-6">
-                {editMode?<input type="text" className="form-control" value={listingDetails.address} onInput={(e) => { setListingDetails({ ...listingDetails, address: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth && (auth.user.isPaid || auth.user.view_count==0) ?"":"blurme"}>{listingDetails.address}</span>}                </div>
+                {editMode?<input type="text" className="form-control" value={listingDetails.address} onInput={(e) => { setListingDetails({ ...listingDetails, address: e.target.value }) }} disabled={!editMode}></input>:<span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth && (auth.user.isPaid || auth.user.view_count<=4) ?"":"blurme"}>{listingDetails.address}</span>}                </div>
               </div>
 
 
@@ -388,10 +388,10 @@ function editListing(){
           <Card>
             <Card.Body><>
               <h4 className="mb-3">Locate On Map</h4>
-              {(auth &&!auth.user.isPaid&& auth.user.view_count!=0)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to Locate</button>}
+              {(auth &&!auth.user.isPaid&& auth.user.view_count>4)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to Locate</button>}
               {!auth &&<button className="btn btn-primary" onClick={()=>{nav("/signIn")}}>Login to Continue</button>}
               <hr />
-             {auth&&(auth.user.isPaid || auth.user.view_count==0)  && <div className="App" style={{ margin: "0px", marginTop: "10px" }}>
+             {auth&&(auth.user.isPaid || auth.user.view_count<=4)  && <div className="App" style={{ margin: "0px", marginTop: "10px" }}>
                 <MyMapComponent
                   googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPI}&libraries=places`}
                   loadingElement={<div style={{ height: `100%` }} />}
