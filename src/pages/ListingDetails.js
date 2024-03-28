@@ -337,7 +337,7 @@ function editListing(){
                       <span style={{ fontWeight: "bold", fontSize: "18px" }}>Contact:</span>
                     </div>
                     <div className="col-6">
-                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth&&(auth.user.isPaid || auth.user.view_count>=4 )?"":"blurme"}>{listingDetails.phone}</span>{(!auth.user.isPaid&& auth.user.view_count!=0)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
+                    {editMode?<input type="number" className="form-control" value={listingDetails.phone} onInput={(e) => { setListingDetails({ ...listingDetails, phone: e.target.value }) }} disabled={!editMode}></input>:<><span style={{ fontWeight: "" ,fontSize:"18px" }} className={auth&&(auth.user.isPaid || auth.user.view_count<=4 )?"":"blurme"}>{listingDetails.phone}</span>{(!auth.user.isPaid&& auth.user.view_count>4)&&<button className="btn btn-primary" onClick={()=>{buy()}}>Click to See Details</button>}</>}
                     </div>
                   </div>
                   <div className="row m-2">
